@@ -1,0 +1,1 @@
+postgresql://YohanAmbinintsoa:u4ixcVJHQOD3@ep-shrill-voice-12867324.us-east-2.aws.neon.tech/final?sslmode=require

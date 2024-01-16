@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Categorie_Marque;
 import ITU.Baovola.Gucci.Models.Marque;
+import ITU.Baovola.Gucci.Security.Authority;
+import ITU.Baovola.Gucci.Security.Role;
 import jakarta.servlet.http.HttpServletRequest;
 import yohx.DAO.DAO;
 
@@ -24,10 +26,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/Marques")
-public class MarqueController {
-    DAO requester = new DAO("postgres", "root", "final", "postgresql");
-    
+public class MarqueController extends BaseController{
+     
     @GetMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data = new ResponseData();
         try {
@@ -41,6 +43,7 @@ public class MarqueController {
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
+    @Authority(role = Role.ADMIN)
     public ResponseData insert(HttpServletRequest req, @RequestParam("image") MultipartFile file) {
         ResponseData data = new ResponseData();
         try {
@@ -57,6 +60,7 @@ public class MarqueController {
     }
 
     @PostMapping("addCategorie")
+    @Authority(role = Role.ADMIN)
     public ResponseData postMethodName(HttpServletRequest req, @RequestParam("marque") String id) {
         ResponseData data=new ResponseData();
         try {
@@ -73,6 +77,7 @@ public class MarqueController {
     
 
     @GetMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData getById(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {
@@ -88,6 +93,7 @@ public class MarqueController {
     }
 
     @PutMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData update(@PathVariable("id") String id, HttpServletRequest req) {
         ResponseData data = new ResponseData();
         try {
@@ -102,6 +108,7 @@ public class MarqueController {
     }
 
     @DeleteMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData delete(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {

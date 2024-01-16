@@ -59,6 +59,27 @@ CREATE TABLE Modele(
    FOREIGN KEY(idMarque) REFERENCES Marque(idMarque)
 );
 
+CREATE TABLE Parametrages(
+   idParametre VARCHAR(50) ,
+   prixmin DOUBLE PRECISION,
+   prixmax DOUBLE PRECISION,
+   pourcentage float,
+   PRIMARY KEY(idParametre)
+);
+
+CREATE TABLE Utilisateur(
+   idUtilisateur VARCHAR(50) ,
+   nom VARCHAR(255) ,
+   prenom VARCHAR(255) ,
+   dtn DATE,
+   CIN VARCHAR(50) ,
+   role VARCHAR(50) ,
+   dateinscription DATE,
+   nomutilisateur VARCHAR(50) ,
+   mdp VARCHAR(50) ,
+   PRIMARY KEY(idUtilisateur)
+);
+
 CREATE TABLE Categorie_Marque(
    idCategorie VARCHAR(50) ,
    idMarque VARCHAR(50) ,

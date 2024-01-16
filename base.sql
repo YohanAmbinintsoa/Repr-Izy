@@ -64,3 +64,45 @@ CREATE TABLE Categorie_Marque(
    FOREIGN KEY(fk_Categorie) REFERENCES Categorie(idCategorie),
    FOREIGN KEY(fk_Marque) REFERENCES Marque(idMarque)
 );
+
+create TABLE parametrages(
+   idparametre VARCHAR(50) PRIMARY KEY,
+   prixmin FLOAT,
+   prixmax FLOAT,
+   pourcentage FLOAT
+);
+
+CREATE TABLE Utilisateur(
+   idUtilisateur VARCHAR(50) ,
+   nom VARCHAR(255) ,
+   prenom VARCHAR(255) ,
+   dtn DATE,
+   CIN VARCHAR(50) ,
+   role VARCHAR(50) ,
+   dateinscription DATE,
+   nomutilisateur VARCHAR(50) ,
+   mdp VARCHAR(50) ,
+   PRIMARY KEY(idUtilisateur)
+);
+
+SELECT
+    to_char(DATE '2024-01-01' + months.month * INTERVAL '1 month', 'Month') AS registration_month_name,
+    months.month AS registration_month,
+    years.year AS registration_year,
+    COALESCE(COUNT(u.idutilisateur), 0) AS user_count
+FROM
+    (
+        SELECT EXTRACT(MONTH FROM generate_series(DATE '2024-01-01', DATE '2024-12-31', '1 month'::interval)) AS month
+    ) months
+CROSS JOIN
+    (
+        SELECT EXTRACT(YEAR FROM DATE '2024-01-01') AS year
+    ) years
+LEFT JOIN
+    Utilisateur u ON EXTRACT(MONTH FROM u.dateinscription) = months.month AND EXTRACT(YEAR FROM u.dateinscription) = years.year
+GROUP BY
+    months.month, years.year
+ORDER BY
+    years.year, months.month;
+
+

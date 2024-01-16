@@ -1,16 +1,20 @@
 package ITU.Baovola.Gucci.Models;
 
-import java.sql.Date;
+import java.sql.Connection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "annonce")
+import yohx.DAO.DAO;
+
+@Document(collection = "Annonce")
 public class Annonce {
     @Id
     String id;
     User user;
+    Categorie cat;
     Marque marque;
     Modele modele;
     float prix;
@@ -29,10 +33,30 @@ public class Annonce {
     Date date;
     List<String> images;
 
-    public Annonce(User user, Marque marque, Modele modele, float prix, int annee, String description, Type type,
-            int place, float kilometrique, Etat etatVehicule, Transmission transmission, Energie energie,
-            float cylindre, float puissance, float nbrCylindre, int etatAnnonce, Date date, List<String> images) {
+    public Annonce(Connection con,DAO req, String cat, String marque, String modele, String prix, String annee, String description, String type,
+            String place, String kilometrique, String etatVehicule, String transmission, String energie,
+            String cylindre, String puissance, String nbrCylindre) throws Exception{
+        this.setAnnee(annee);
+        this.setCategorie(cat, req, con);
+        this.setCylindre(cylindre);
+        this.setDescription(description);
+        this.setEnergie(energie, req, con);
+        this.setEtatVehicule(etatVehicule, req, con);
+        this.setImages(images);
+        this.setKilometrique(kilometrique);
+        this.setMarque(marque, req, con);
+        this.setNbrCylindre(nbrCylindre);
+        this.setPlace(place);
+        this.setPrix(prix);
+        this.setPuissance(puissance);
+        this.setTransmission(transmission, req, con);
+    }
+
+    public Annonce(User user, Categorie cat, Marque marque, Modele modele, float prix, int annee, String description,
+            Type type, int place, float kilometrique, Etat etatVehicule, Transmission transmission, Energie energie,
+            float cylindre, float puissance, float nbrCylindre, int etatAnnonce, Date date, List<String> images) throws Exception{
         this.user = user;
+        this.cat = cat;
         this.marque = marque;
         this.modele = modele;
         this.prix = prix;
@@ -50,6 +74,105 @@ public class Annonce {
         this.etatAnnonce = etatAnnonce;
         this.date = date;
         this.images = images;
+    }
+
+    public void setMarque(String marque, DAO req, Connection con) throws Exception{
+        if (marque!=null&&!marque.equals("")) {
+            Marque mk=new Marque();
+            mk.setId(marque);
+            this.marque=(Marque)req.select(con,mk).get(0);
+        }
+    }
+
+    public void setModele(String modele, DAO req, Connection con) throws Exception{
+        if (modele!=null&&!modele.equals("")) {
+            Modele mk=new Modele();
+            mk.setId(modele);
+            this.modele=(Modele)req.select(con,mk).get(0);
+        }
+    }
+
+    public void setCategorie(String categorie, DAO req, Connection con) throws Exception {
+        if (categorie != null && !categorie.equals("")) {
+            Categorie cat = new Categorie();
+            cat.setId(categorie);
+            this.cat = (Categorie) req.select(con, cat).get(0);
+        }
+    }
+
+    public void setPrix(String prix) throws Exception{
+        if (prix!=null&&!prix.equals("")) {
+            this.prix = Float.parseFloat(prix);
+        }
+    }
+
+    public void setAnnee(String annee) throws Exception{
+        if (annee!=null&&!annee.equals("")) {
+            this.annee = Integer.parseInt(annee);
+        }
+       
+    }
+
+    public void setType(String typeId, DAO req, Connection con) throws Exception {
+        if (typeId != null && !typeId.equals("")) {
+            Type type = new Type();
+            type.setId(typeId);
+            this.type = (Type) req.select(con, type).get(0);
+        }
+    }
+
+    public void setPlace(String place) throws Exception{
+        if (place!=null&&!place.equals("")) {
+            this.place = Integer.parseInt(place);
+        }
+    }
+
+    public void setKilometrique(String kilometrique) throws Exception{
+        if (kilometrique!=null&&!kilometrique.equals("")) {
+            this.kilometrique = Float.parseFloat(kilometrique);
+        }
+    }
+
+    public void setEtatVehicule(String etatId, DAO req, Connection con) throws Exception {
+        if (etatId != null && !etatId.equals("")) {
+            Etat etat = new Etat();
+            etat.setId(etatId);
+            this.etatVehicule = (Etat) req.select(con, etat).get(0);
+        }
+    }
+
+    public void setTransmission(String transmissionId, DAO req, Connection con) throws Exception {
+        if (transmissionId != null && !transmissionId.equals("")) {
+            Transmission transmission = new Transmission();
+            transmission.setId(transmissionId);
+            this.transmission = (Transmission) req.select(con, transmission).get(0);
+        }
+    }
+    
+    public void setEnergie(String energieId, DAO req, Connection con) throws Exception {
+        if (energieId != null && !energieId.equals("")) {
+            Energie energie = new Energie();
+            energie.setId(energieId);
+            this.energie = (Energie) req.select(con, energie).get(0);
+        }
+    }
+
+    public void setCylindre(String cylindre) throws Exception{
+        if (cylindre!=null&&!cylindre.equals("")) {
+            this.cylindre = Float.parseFloat(cylindre);
+        }
+    }
+
+    public void setPuissance(String puissance) throws Exception{
+        if (puissance!=null&&!puissance.equals("")) {
+            this.puissance = Float.parseFloat(puissance);
+        }
+    }
+
+    public void setNbrCylindre(String nbrCylindre) throws Exception{
+        if (nbrCylindre!=null&&!nbrCylindre.equals("")) {
+            this.nbrCylindre = Float.parseFloat(nbrCylindre);
+        }
     }
 
     public Annonce() {
@@ -170,6 +293,14 @@ public class Annonce {
 
     public void setImages(List<String> images) {
         this.images = images;
+    }
+
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public void setCat(Categorie cat) {
+        this.cat = cat;
     }
 
     

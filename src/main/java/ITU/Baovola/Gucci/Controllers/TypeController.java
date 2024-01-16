@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Type;
-import yohx.DAO.DAO;
+import ITU.Baovola.Gucci.Security.Authority;
+import ITU.Baovola.Gucci.Security.Role;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/Types")
-public class TypeController {
-
-    private final DAO requester = new DAO("postgres", "root", "final", "postgresql");
+public class TypeController extends BaseController{
 
     @GetMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data = new ResponseData();
         try {
@@ -34,6 +34,7 @@ public class TypeController {
     }
 
     @PostMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData insert(HttpServletRequest req) {
         ResponseData data = new ResponseData();
         try {
@@ -47,6 +48,7 @@ public class TypeController {
     }
 
     @GetMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData getById(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {
@@ -62,6 +64,7 @@ public class TypeController {
     }
 
     @PutMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData update(@PathVariable("id") String id, HttpServletRequest req) {
         ResponseData data = new ResponseData();
         try {
@@ -76,6 +79,7 @@ public class TypeController {
     }
 
     @DeleteMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData delete(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {

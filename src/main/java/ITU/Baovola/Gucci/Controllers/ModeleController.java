@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Modele;
+import ITU.Baovola.Gucci.Security.Authority;
+import ITU.Baovola.Gucci.Security.Role;
 import jakarta.servlet.http.HttpServletRequest;
 import yohx.DAO.DAO;
 
@@ -19,10 +21,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/Modeles")
-public class ModeleController {
-    DAO requester = new DAO("postgres", "root", "final", "postgresql");
-    
+public class ModeleController extends BaseController{
+  
     @GetMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data = new ResponseData();
         try {
@@ -36,6 +38,7 @@ public class ModeleController {
     }
 
     @PostMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData insert(HttpServletRequest req) {
         ResponseData data = new ResponseData();
         try {
@@ -49,6 +52,7 @@ public class ModeleController {
     }
 
     @GetMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData getById(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {
@@ -64,6 +68,7 @@ public class ModeleController {
     }
 
     @PutMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData update(@PathVariable("id") String id, HttpServletRequest req) {
         ResponseData data = new ResponseData();
         try {
@@ -78,6 +83,7 @@ public class ModeleController {
     }
 
     @DeleteMapping("/{id}")
+    @Authority(role = Role.ADMIN)
     public ResponseData delete(@PathVariable("id") String id) {
         ResponseData data = new ResponseData();
         try {
