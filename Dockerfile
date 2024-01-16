@@ -6,6 +6,7 @@ WORKDIR /app
 COPY . .
 
 # Build the Spring Boot application using Maven
+RUN mvn dependency:resolve
 RUN mvn clean package
 
 FROM openjdk:17-oracle
