@@ -17,7 +17,7 @@ COPY src/main/resources/lib /app/lib
 
 RUN ls -al /app
 
-ENV CLASSPATH /app/lib/*.jar
+ENV CLASSPATH=/app/lib/*.jar
 
 
 # Expose the port your Spring Boot app is running on
