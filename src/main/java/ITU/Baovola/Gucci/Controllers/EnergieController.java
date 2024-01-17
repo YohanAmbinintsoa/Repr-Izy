@@ -12,7 +12,6 @@ import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Energie;
 import ITU.Baovola.Gucci.Security.Authority;
 import ITU.Baovola.Gucci.Security.Role;
-import yohx.DAO.DAO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
