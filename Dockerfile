@@ -15,8 +15,10 @@ COPY --from=build /app/target/reprizy.war /app/reprizy.war
 
 COPY src/main/resources/lib /app/lib
 
+RUN ls -al
+
 # Expose the port your Spring Boot app is running on
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-jar", "/app/reprizy.war:lib/DAO.jar"]
+CMD ["java", "-jar", "/app/reprizy.war"]
