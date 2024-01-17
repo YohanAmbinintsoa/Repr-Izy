@@ -5,7 +5,6 @@ WORKDIR /app
 COPY . .
 
 # Build the Spring Boot application using Maven
-RUN mvn dependency:resolve
 RUN mvn clean package
 
 FROM openjdk:17-oracle
@@ -17,4 +16,4 @@ COPY --from=build /app/target/reprizy.war /app/reprizy.war
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-cp", "/app/reprizy.war:/app/lib/DAO.jar","org.springframework.boot.loader.WarLauncher"]
+CMD ["java","-jar","reprizy.war"]
