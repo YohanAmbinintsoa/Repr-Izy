@@ -16,4 +16,4 @@ COPY --from=build /app/target/reprizy.war /app/reprizy.war
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java","-jar","reprizy.war"]
+CMD ["java","-jar","/app/reprizy.war"]
