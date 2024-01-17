@@ -21,4 +21,4 @@ RUN ls -al /app
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-cp", "/app/src/main/resources/lib/DAO.jar", "-jar", "/app/target/reprizy.war"]
+CMD ["java", "-cp", "/app/src/main/resources/lib/DAO.jar", "-jar", "/app/reprizy.war"]
