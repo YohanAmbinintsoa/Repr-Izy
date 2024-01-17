@@ -1,9 +1,6 @@
 package ITU.Baovola.Gucci.Models;
 
-import yohx.annotations.Column;
-import yohx.annotations.Generation;
-import yohx.annotations.Id;
-import yohx.annotations.Table;
+import ITU.Baovola.Gucci.DAO.*;
 
 @Table(name = "categorie")
 public class Categorie {

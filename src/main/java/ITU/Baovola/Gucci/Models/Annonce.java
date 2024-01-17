@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import yohx.DAO.DAO;
+import ITU.Baovola.Gucci.DAO.DAO;
 
 @Document(collection = "Annonce")
 public class Annonce {

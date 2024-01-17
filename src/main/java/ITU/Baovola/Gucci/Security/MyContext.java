@@ -1,7 +1,7 @@
 package ITU.Baovola.Gucci.Security;
 
+import ITU.Baovola.Gucci.DAO.DAO;
 import ITU.Baovola.Gucci.Models.User;
-import yohx.DAO.DAO;
 
 public class MyContext {
     private static final ThreadLocal<User> user=new ThreadLocal<>();

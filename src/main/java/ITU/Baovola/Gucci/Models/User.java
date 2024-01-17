@@ -5,12 +5,8 @@ import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import ITU.Baovola.Gucci.DAO.*;
 import ITU.Baovola.Gucci.Security.Role;
-import yohx.DAO.DAO;
-import yohx.annotations.Column;
-import yohx.annotations.Generation;
-import yohx.annotations.Id;
-import yohx.annotations.Table;
 
 @Table(name = "utilisateur")
 public class User {

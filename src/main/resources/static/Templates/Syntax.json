@@ -1,0 +1,42 @@
+{
+    "postgresql":{
+        "sequence":"SELECT nextval('{sequence_name}')",
+        "create_sequence":"create sequence {sequence_name}",
+        "insert":"INSERT INTO {table} ({column}) VALUES ({values})",
+        "select":"SELECT * FROM {table} where {predicate}",
+        "select_limit":"SELECT * FROM {table} where {predicate} OFFSET {min} LIMIT {max}",
+        "order":"ORDER BY {column} {mode}",
+        "update":"UPDATE {table} SET {predicate} WHERE {idvalue}",
+        "delete":"DELETE FROM {table} WHERE {predicate}"
+    },
+    "mysql":{
+        "sequence":"SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = '{table}'",
+        "create_sequence":"create sequence {sequence_name}",
+        "insert":"INSERT INTO {table} ({column}) VALUES ({values})",
+        "select":"SELECT * FROM {table} where {predicate}",
+        "select_limit":"SELECT * FROM {table} where {predicate} LIMIT {min}, {max}",
+        "order":"ORDER BY {column} {mode}",
+        "update":"UPDATE {table} SET {predicate} WHERE {idvalue}",
+        "delete":"DELETE FROM {table} WHERE {predicate}"
+    },
+    "oracle":{
+        "sequence":"SELECT {sequence_name}.NEXTVAL FROM DUAL",
+        "create_sequence":"create sequence {sequence_name}",
+        "insert":"INSERT INTO {table} ({column}) VALUES ({values})",
+        "select":"SELECT * FROM {table} where {predicate}",
+        "select_limit":"SELECT * FROM (SELECT * FROM {table}) WHERE ROWNUM <= {max} AND ROWNUM > {min} and where {predicate}",
+        "order":"ORDER BY {column} {mode}",
+        "update":"UPDATE {table} SET {predicate} WHERE {idvalue}",
+        "delete":"DELETE FROM {table} WHERE {predicate}"
+    },
+    "sql_server":{
+        "sequence":"SELECT NEXT VALUE FOR {sequence_name}",
+        "create_sequence":"create sequence {sequence_name}",
+        "insert":"INSERT INTO {table} ({column}) VALUES ({values})",
+        "select":"SELECT * FROM {table} where {predicate}",
+        "select_limit":"SELECT TOP {max} * FROM {table} WHERE {id} NOT IN (SELECT TOP {min} {id} FROM {table})",
+        "order":"ORDER BY {column} {mode}",
+        "update":"UPDATE {table} SET {predicate} WHERE {idvalue}",
+        "delete":"DELETE FROM {table} WHERE {predicate}"
+    }
+}

@@ -1,7 +1,6 @@
 package ITU.Baovola.Gucci.Models;
 
-import yohx.annotations.Column;
-import yohx.annotations.Table;
+import ITU.Baovola.Gucci.DAO.*;
 
 @Table(name = "Categorie_marque")
 public class Categorie_Marque {
