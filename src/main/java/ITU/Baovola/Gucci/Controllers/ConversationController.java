@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("api/v1/Conversations")
-public class ConversationController {
+public class ConversationController extends BaseController{
     @Autowired
     ConversationRepository conRepo;
     @Autowired
