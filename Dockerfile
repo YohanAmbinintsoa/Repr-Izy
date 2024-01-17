@@ -17,8 +17,12 @@ COPY src/main/resources/lib /app/lib
 
 RUN ls -al /app
 
+ENV CLASSPATH /app/lib/*.jar
+
+
 # Expose the port your Spring Boot app is running on
 EXPOSE 8080
 
+
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-cp", "/app/lib/DAO.jar", "-jar", "/app/reprizy.war"]
+CMD ["java", "-jar", "/app/reprizy.war"]
