@@ -19,4 +19,4 @@ COPY src/main/resources/lib /app/lib
 EXPOSE 8080
 
 # Command to run the Spring Boot application when the container starts
-CMD ["java", "-jar", "/app/reprizy.war:lib:DAO.jar"]
+CMD ["java", "-jar", "/app/reprizy.war:lib/DAO.jar"]
