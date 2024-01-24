@@ -105,4 +105,20 @@ GROUP BY
 ORDER BY
     years.year, months.month;
 
+CREATE TABLE Vente(
+   idvente VARCHAR(50) ,
+   idannonce VARCHAR(255) ,
+   vendeur VARCHAR(50)  NOT NULL,
+   acheteur VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(idvente),
+   FOREIGN KEY(vendeur) REFERENCES Utilisateur(idUtilisateur),
+   FOREIGN KEY(acheteur) REFERENCES Utilisateur(idUtilisateur)
+);
 
+CREATE TABLE Transactions(
+   idtransaction VARCHAR(50) ,
+   entree FLOAT,
+   sortie FLOAT,
+   datetransaction TIMESTAMP,
+   PRIMARY KEY(idtransaction)
+);

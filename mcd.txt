@@ -80,6 +80,24 @@ CREATE TABLE Utilisateur(
    PRIMARY KEY(idUtilisateur)
 );
 
+CREATE TABLE Vente(
+   idvente VARCHAR(50) ,
+   idannonce VARCHAR(255) ,
+   idUtilisateur VARCHAR(50)  NOT NULL,
+   idUtilisateur_1 VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(idvente),
+   FOREIGN KEY(idUtilisateur) REFERENCES Utilisateur(idUtilisateur),
+   FOREIGN KEY(idUtilisateur_1) REFERENCES Utilisateur(idUtilisateur)
+);
+
+CREATE TABLE Transactions(
+   idtransaction VARCHAR(50) ,
+   entree FLOAT,
+   sortie FLOAT,
+   datetransaction TIMESTAMP,
+   PRIMARY KEY(idtransaction)
+);
+
 CREATE TABLE Categorie_Marque(
    idCategorie VARCHAR(50) ,
    idMarque VARCHAR(50) ,
