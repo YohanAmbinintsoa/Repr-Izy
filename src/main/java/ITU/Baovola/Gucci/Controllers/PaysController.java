@@ -13,7 +13,7 @@ import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Pays;
 import ITU.Baovola.Gucci.Security.Authority;
 import ITU.Baovola.Gucci.Security.Role;
-
+import ITU.Baovola.Gucci.Services.Photo;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Base64;
@@ -39,12 +39,12 @@ public class PaysController extends BaseController{
 
     @PostMapping(consumes = { "multipart/form-data" })
     @Authority(role = Role.ADMIN)
-    public ResponseData insert(HttpServletRequest req, @RequestParam("drapeau") MultipartFile file) {
+    public ResponseData insert(HttpServletRequest req, @RequestParam("drapeau") String file) {
         ResponseData data = new ResponseData();
         try {
             Pays pays=new Pays(req.getParameter("pays"));
-            byte[] fileContent=file.getBytes();
-            String base64=Base64.getUrlEncoder().encodeToString(fileContent);
+            Photo photo=new Photo(file, "pays.png");
+            String base64=this.imageService.upload(photo);
             pays.setPath(base64);
             data.addData(requester.insert(null, pays));
         } catch (Exception e) {

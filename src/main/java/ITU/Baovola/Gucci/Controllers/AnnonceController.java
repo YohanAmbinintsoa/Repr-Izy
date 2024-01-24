@@ -52,7 +52,7 @@ public class AnnonceController extends BaseController{
 
     @PostMapping()
     @Authority(role = Role.USER)
-    public ResponseData insertAnnonce(HttpServletRequest req, @RequestParam("images") MultipartFile[] files) {
+    public ResponseData insertAnnonce(HttpServletRequest req, @RequestParam("images") String[] files) {
         ResponseData data=new ResponseData();
         String categorie=req.getParameter("idcategorie");
         String marque=req.getParameter("idmarque");
@@ -78,12 +78,7 @@ public class AnnonceController extends BaseController{
             annonce.setUser(user);
             annonce.setEtatAnnonce(0);
             annonce.setDate(new Date(System.currentTimeMillis()));
-            List<String> str=new ArrayList<>();
-            for (MultipartFile file : files) {
-                byte[] fileContent=file.getBytes();
-                String base64=Base64.getUrlEncoder().encodeToString(fileContent);
-                str.add(base64);
-            }
+            List<String> str=this.imageService.upload(files);
             annonce.setImages(str);
             data.addData(repo.save(annonce));
         } catch (Exception e) { 

@@ -8,6 +8,7 @@ import ITU.Baovola.Gucci.Models.Categorie_Marque;
 import ITU.Baovola.Gucci.Models.Marque;
 import ITU.Baovola.Gucci.Security.Authority;
 import ITU.Baovola.Gucci.Security.Role;
+import ITU.Baovola.Gucci.Services.Photo;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,12 +44,12 @@ public class MarqueController extends BaseController{
 
     @PostMapping(consumes = {"multipart/form-data"})
     @Authority(role = Role.ADMIN)
-    public ResponseData insert(HttpServletRequest req, @RequestParam("image") MultipartFile file) {
+    public ResponseData insert(HttpServletRequest req, @RequestParam("image") String file) {
         ResponseData data = new ResponseData();
         try {
             Marque marque = new Marque(req.getParameter("marque"), req.getParameter("idpays"));
-            byte[] fileContent = file.getBytes();
-            String base64 = Base64.getUrlEncoder().encodeToString(fileContent);
+            Photo photo=new Photo(file, "marque.png");
+            String base64 = this.imageService.upload(photo);
             marque.setPath(base64);
             data.addData(requester.insert(null, marque));
         } catch (Exception e) {

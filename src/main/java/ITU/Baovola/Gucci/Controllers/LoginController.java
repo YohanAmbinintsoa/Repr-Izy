@@ -26,7 +26,6 @@ public class LoginController extends BaseController{
         try {
             System.out.println("IDENTIFIANT="+req.getParameter("username")+" MDP="+req.getParameter("mdp"));
             User user=User.login(req.getParameter("username"), req.getParameter("mdp"), this.requester);
-
             if (user==null) {
                 data.setError("Verifier vos identifiants!");
                 return data;
