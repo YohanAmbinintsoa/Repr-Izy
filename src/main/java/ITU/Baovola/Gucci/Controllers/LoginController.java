@@ -24,7 +24,6 @@ public class LoginController extends BaseController{
     public ResponseData loginUser(HttpServletRequest req) {
         ResponseData data=new ResponseData();
         try {
-            System.out.println("IDENTIFIANT="+req.getParameter("username")+" MDP="+req.getParameter("mdp"));
             User user=User.login(req.getParameter("username"), req.getParameter("mdp"), this.requester);
             if (user==null) {
                 data.setError("Verifier vos identifiants!");
@@ -54,7 +53,8 @@ public class LoginController extends BaseController{
             }
             user.setNomUser(req.getParameter("username"));
             user.setMdp(req.getParameter("mdp"));
-            user.setRole("USER");
+            user.setRole("ADMIN");
+            System.out.println(user.getRole());
             user.setDateInscription(new Date(System.currentTimeMillis()));
             user=this.requester.insert(null, user);
             String token=utils.generateJwtToken(user);

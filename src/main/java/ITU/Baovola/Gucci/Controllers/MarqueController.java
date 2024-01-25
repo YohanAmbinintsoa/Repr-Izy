@@ -1,8 +1,6 @@
 package ITU.Baovola.Gucci.Controllers;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Categorie_Marque;
 import ITU.Baovola.Gucci.Models.Marque;
@@ -14,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
