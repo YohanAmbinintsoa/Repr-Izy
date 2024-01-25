@@ -53,7 +53,7 @@ public class LoginController extends BaseController{
             }
             user.setNomUser(req.getParameter("username"));
             user.setMdp(req.getParameter("mdp"));
-            user.setRole("ADMIN");
+            user.setRole("USER");
             System.out.println(user.getRole());
             user.setDateInscription(new Date(System.currentTimeMillis()));
             user=this.requester.insert(null, user);
