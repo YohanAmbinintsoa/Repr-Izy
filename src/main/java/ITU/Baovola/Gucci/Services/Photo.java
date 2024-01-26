@@ -17,6 +17,9 @@ public class Photo {
     }
 
     public File convertToFile() throws IOException {
+        if (base64.startsWith("data:image/png;base64,")) {
+            base64 = base64.substring("data:image/png;base64,".length());
+        }
       byte[] decodedBytes = Base64.getDecoder().decode(base64);
       ByteArrayInputStream inputStream = new ByteArrayInputStream(decodedBytes);
       File outputImage = new File(this.filename);
