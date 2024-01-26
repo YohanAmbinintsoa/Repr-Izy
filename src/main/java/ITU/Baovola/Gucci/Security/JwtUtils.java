@@ -21,8 +21,8 @@ public class JwtUtils {
 
   public static String getToken(HttpServletRequest request){
     String token="";
-    if (request.getParameter("authorization")!=null&&request.getParameter("authorization")!="") {
-        token=request.getParameter("authorization");
+    if (request.getHeader("authorization")!=null&&request.getHeader("authorization")!="") {
+        token=request.getHeader("authorization");
     }
     return token;
   }
