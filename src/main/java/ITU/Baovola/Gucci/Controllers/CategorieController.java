@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/Categories")
-@CrossOrigin
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class CategorieController extends BaseController{
    
     @GetMapping
