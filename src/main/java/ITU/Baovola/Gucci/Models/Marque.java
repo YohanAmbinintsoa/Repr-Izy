@@ -10,7 +10,7 @@ public class Marque {
     String nom;
     @Column(name = "fk_pays")
     String idpays;
-    @Column(name = "image")
+    @Column(name = "path")
     String path;
     
     public Marque(String nom, String idpays) {
