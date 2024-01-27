@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class CategorieController extends BaseController{
    
     @GetMapping
-    // @Authority(role = Role.ADMIN)
+    @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data=new ResponseData();
         try {
