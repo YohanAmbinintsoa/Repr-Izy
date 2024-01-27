@@ -3,7 +3,7 @@
         "sequence":"SELECT nextval('{sequence_name}')",
         "create_sequence":"create sequence {sequence_name}",
         "insert":"INSERT INTO {table} ({column}) VALUES ({values})",
-        "select":"SELECT * FROM {table} where {predicate}",
+        "select":"SELECT * FROM {table} {join} where {predicate}",
         "select_limit":"SELECT * FROM {table} where {predicate} OFFSET {min} LIMIT {max}",
         "order":"ORDER BY {column} {mode}",
         "update":"UPDATE {table} SET {predicate} WHERE {idvalue}",

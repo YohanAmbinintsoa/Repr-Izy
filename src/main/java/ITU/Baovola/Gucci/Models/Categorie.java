@@ -6,7 +6,7 @@ import ITU.Baovola.Gucci.DAO.*;
 public class Categorie {
     @Id(name = "idcategorie", idtype = Generation.AUTO)
     String id;
-    @Column(name = "nomcategrorie")
+    @Column(name = "nomcategorie")
     String nom;
 
     public Categorie() {

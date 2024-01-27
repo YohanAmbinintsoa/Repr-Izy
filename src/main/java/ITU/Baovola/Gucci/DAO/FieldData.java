@@ -1,7 +1,11 @@
 package ITU.Baovola.Gucci.DAO;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 
@@ -10,6 +14,7 @@ public class FieldData {
     String columnName;
     Object value;
     Class<?> type;
+    
 
     public FieldData(Field field, Object subject) throws Exception{
         field.setAccessible(true);
@@ -83,6 +88,12 @@ public class FieldData {
 
     public void setType(Class<?> type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "FieldData [fieldName=" + fieldName + ", columnName=" + columnName + ", value=" + value + ", type="
+                + type + "]";
     }
 
 }

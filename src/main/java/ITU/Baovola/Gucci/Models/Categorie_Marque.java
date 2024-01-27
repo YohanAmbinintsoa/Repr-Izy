@@ -8,6 +8,10 @@ public class Categorie_Marque {
     String idMarque;
     @Column(name = "fk_categorie")
     String idCategorie;
+    @Referenced(pk = "idcategorie",fk = "fk_categorie")
+    Categorie cat;
+    @Referenced(pk = "idmarque",fk = "fk_marque")
+    Marque marque;
     
     public Categorie_Marque(String idMarque, String idCategorie) {
         this.idMarque = idMarque;
@@ -28,6 +32,22 @@ public class Categorie_Marque {
     }
     public void setIdCategorie(String idCategorie) {
         this.idCategorie = idCategorie;
+    }
+
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public void setCat(Categorie cat) {
+        this.cat = cat;
+    }
+
+    public Marque getMarque() {
+        return marque;
+    }
+
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
     
 

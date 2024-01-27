@@ -78,6 +78,7 @@ public class DAO {
             TableMetadata metadata=new TableMetadata(this.reader, inserted);
             String select_query=this.reader.getSyntax().get("select").replace("{table}", metadata.getTableName());
             select_query=metadata.getFieldPredicates(select_query,false);
+            select_query=select_query.replace("{join}",  metadata.addJoin());
             System.out.println(select_query);
             Statement state=con.createStatement();
             ResultSet res=state.executeQuery(select_query);

@@ -46,6 +46,7 @@ CREATE TABLE Marque(
    idMarque VARCHAR(50) ,
    nomMarque VARCHAR(255) ,
    fk_Pays VARCHAR(50)  NOT NULL,
+   path VARCHAR(255),
    PRIMARY KEY(idMarque),
    FOREIGN KEY(fk_Pays) REFERENCES Pays(idPays)
 );

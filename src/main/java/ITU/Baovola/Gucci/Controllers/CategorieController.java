@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.Categorie;
+import ITU.Baovola.Gucci.Models.Categorie_Marque;
 import ITU.Baovola.Gucci.Security.Authority;
 import ITU.Baovola.Gucci.Security.Role;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class CategorieController extends BaseController{
    
     @GetMapping
-    @Authority(role = Role.ADMIN)
+    // @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data=new ResponseData();
         try {
@@ -92,6 +93,20 @@ public class CategorieController extends BaseController{
             Categorie categorie = new Categorie();
             this.requester.delete(null, id, categorie);
             data.addData("Deleted!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        }
+        return data;
+    }
+
+    @GetMapping("/Marque/{id}")
+    public ResponseData getCategorieByMarque(@PathVariable("id") String idMarque){
+        ResponseData data=new ResponseData();
+        try {
+            Categorie_Marque categorie_Marque=new Categorie_Marque();
+            categorie_Marque.setIdMarque(idMarque);
+            data.addData(this.requester.select(null, categorie_Marque));
         } catch (Exception e) {
             e.printStackTrace();
             data.setError(e.getMessage());

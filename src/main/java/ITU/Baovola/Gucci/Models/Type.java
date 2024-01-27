@@ -10,6 +10,8 @@ public class Type {
     String nom;
     @Column(name = "fk_categorie")
     String categorie;
+    @Referenced(pk = "idcategorie",fk="fk_categorie")
+    Categorie cat;
     
     public Type(String nom, String categorie) {
         this.nom = nom;
@@ -36,5 +38,13 @@ public class Type {
     }
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public void setCat(Categorie cat) {
+        this.cat = cat;
     }
 }

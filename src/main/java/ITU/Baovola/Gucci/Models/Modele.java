@@ -10,6 +10,8 @@ public class Modele {
     String nom;
     @Column(name = "fk_marque")
     String idmarque;
+    @Referenced(pk = "idmarque",fk = "fk_marque")
+    Marque marque;
     
     public Modele(String nom, String idmarque) {
         this.nom = nom;
@@ -34,6 +36,12 @@ public class Modele {
     }
     public void setIdmarque(String idmarque) {
         this.idmarque = idmarque;
+    }
+    public Marque getMarque() {
+        return marque;
+    }
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
     
 }

@@ -1,6 +1,5 @@
 package ITU.Baovola.Gucci.DAO;
 
-
 public class OrderBy {
     FieldData field;
     String order;

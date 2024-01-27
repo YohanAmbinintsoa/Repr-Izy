@@ -10,6 +10,8 @@ public class Marque {
     String nom;
     @Column(name = "fk_pays")
     String idpays;
+    @Referenced(pk="idpays",fk="fk_pays")
+    Pays pays;
     @Column(name = "path")
     String path;
     
@@ -44,5 +46,13 @@ public class Marque {
     }
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
     }
 }
