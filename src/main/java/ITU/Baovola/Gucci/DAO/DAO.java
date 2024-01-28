@@ -164,7 +164,8 @@ public class DAO {
             opened=true;
         }
         Object obj=null;
-        String query="select * from "+metadata.getTableName()+" order by "+metadata.getId().getColumnName()+" DESC LIMIT 1";
+        String query="select * from "+metadata.getTableName()+" {join} order by "+metadata.getId().getColumnName()+" DESC LIMIT 1";
+        query=query.replace("{join}", metadata.addJoin());
         Statement state=con.createStatement();
         ResultSet res=state.executeQuery(query);
         if (res.next()) {
