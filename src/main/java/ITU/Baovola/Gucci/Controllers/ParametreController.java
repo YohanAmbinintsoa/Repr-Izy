@@ -37,6 +37,7 @@ public class ParametreController extends BaseController{
     }
 
     @GetMapping
+    @Authority(role = Role.ADMIN)
     public ResponseData getParams() {
         ResponseData data=new ResponseData();
         try {
