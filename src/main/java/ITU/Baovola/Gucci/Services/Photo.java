@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 
 public class Photo {
-    String base64;
-    String filename;
-    
+    private String base64;
+    private String filename;
+
     public Photo(String base64, String filename) {
         this.base64 = base64;
         this.filename = filename;
@@ -36,15 +36,19 @@ public class Photo {
         }
     }
 
+
     public String getBase64() {
         return base64;
     }
+
     public void setBase64(String base64) {
         this.base64 = base64;
     }
+
     public String getFilename() {
         return filename;
     }
+
     public void setFilename(String filename) {
         this.filename = filename;
     }

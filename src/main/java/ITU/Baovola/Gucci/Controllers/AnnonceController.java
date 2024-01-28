@@ -52,7 +52,8 @@ public class AnnonceController extends BaseController{
 
     @PostMapping()
     @Authority(role = Role.USER)
-    public ResponseData insertAnnonce(HttpServletRequest req, @RequestParam("images") String[] files) {
+    public ResponseData insertAnnonce(HttpServletRequest req) {
+        String[] files=req.getParameterValues("images");
         ResponseData data=new ResponseData();
         String categorie=req.getParameter("idcategorie");
         String marque=req.getParameter("idmarque");
@@ -79,8 +80,8 @@ public class AnnonceController extends BaseController{
             annonce.setUser(user);
             annonce.setEtatAnnonce(0);
             annonce.setDate(new Date(System.currentTimeMillis()));
-            List<String> str=this.imageService.upload(files);
-            annonce.setImages(str);
+            // List<String> str=this.imageService.upload(files);
+            // annonce.setImages(str);
             data.addData(repo.save(annonce));
         } catch (Exception e) { 
             e.printStackTrace();

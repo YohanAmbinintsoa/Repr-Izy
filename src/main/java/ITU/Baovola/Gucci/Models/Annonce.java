@@ -48,7 +48,6 @@ public class Annonce {
     float nbrCylindre;
     int etatAnnonce;
     Date date;
-    @NonNull
     List<String> images;
 
     public Annonce(Connection con,DAO req, String cat, String marque, String modele, String prix, String annee, String description, String type,

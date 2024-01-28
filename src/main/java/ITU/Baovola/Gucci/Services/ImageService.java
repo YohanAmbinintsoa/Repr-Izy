@@ -49,8 +49,11 @@ public class ImageService {
   public List<String> upload(String[] photos) throws Exception{
         List<String> images=new ArrayList<>();
         for (int i = 0; i < photos.length; i++) {
-            Photo photo = new Photo(photos[i],"image"+i);
-            images.add(this.upload(photo));
+            // System.out.println("PHoto="+photos[i]);
+            Photo photo = new Photo(photos[i],"image"+i+".png");
+            photo.convertToFile();
+            // images.add(this.upload(photo));
+            images.add("null");
         }
         return images;
   }
