@@ -10,6 +10,9 @@ import ITU.Baovola.Gucci.Security.Role;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("api/v1/Parametres")
@@ -32,5 +35,18 @@ public class ParametreController extends BaseController{
         }
         return data;
     }
+
+    @GetMapping
+    public ResponseData getParams() {
+        ResponseData data=new ResponseData();
+        try {
+            data.addData(this.requester.select(null, new Parametrages()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        }
+        return data;
+    }
+    
     
 }
