@@ -48,6 +48,7 @@ public class Annonce {
     float nbrCylindre;
     int etatAnnonce;
     Date date;
+
     List<String> images;
 
     public Annonce(Connection con,DAO req, String cat, String marque, String modele, String prix, String annee, String description, String type,
@@ -59,6 +60,7 @@ public class Annonce {
         this.setDescription(description);
         this.setEnergie(energie, req, con);
         this.setEtatVehicule(etatVehicule, req, con);
+        this.setType(type,req,con);
         this.setImages(images);
         this.setKilometrique(kilometrique);
         this.setMarque(marque, req, con);
