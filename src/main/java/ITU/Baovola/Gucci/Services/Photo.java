@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
@@ -17,14 +19,22 @@ public class Photo {
     }
 
     public File convertToFile() throws IOException {
-        if (base64.startsWith("data:image/png;base64,")) {
-            base64 = base64.substring("data:image/png;base64,".length());
+        Pattern pattern = Pattern.compile("data:image/(.*?);base64,");
+        Matcher matcher = pattern.matcher(base64);
+        if (matcher.find()) {
+            String format = matcher.group(1);
+            base64 = base64.substring(matcher.end());
+            
+            byte[] decodedBytes = Base64.getDecoder().decode(base64);
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(decodedBytes);
+            
+            File outputImage = new File(filename);
+            ImageIO.write(ImageIO.read(inputStream), format, outputImage);
+            
+            return outputImage;
+        } else {
+            throw new IllegalArgumentException("Invalid base64 image format");
         }
-      byte[] decodedBytes = Base64.getDecoder().decode(base64);
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(decodedBytes);
-      File outputImage = new File(this.filename);
-      ImageIO.write(ImageIO.read(inputStream), "png", outputImage);
-      return outputImage;
     }
 
     public String getBase64() {
