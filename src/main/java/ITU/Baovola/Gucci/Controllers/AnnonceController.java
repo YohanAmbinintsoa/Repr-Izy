@@ -69,11 +69,12 @@ public class AnnonceController extends BaseController{
         String cylindre=req.getParameter("cylindre");
         String puissance=req.getParameter("puissance");
         String nbrCylindre=req.getParameter("nbrCylindre");
+        String libelle=req.getParameter("libelle");
         Connection con=null;
         try {
             con=this.requester.connect();
             Annonce annonce=new Annonce(con,this.requester,categorie,marque,modele,prix,annee,description,type,place,
-                            kilometrique,etat,transmission,energie,cylindre,puissance,nbrCylindre);
+                            kilometrique,etat,transmission,energie,cylindre,puissance,nbrCylindre,libelle);
             User user=MyContext.getUser();
             annonce.setUser(user);
             annonce.setEtatAnnonce(0);

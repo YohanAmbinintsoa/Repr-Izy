@@ -7,35 +7,53 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.mongodb.lang.NonNull;
+import com.mongodb.lang.Nullable;
+
 import ITU.Baovola.Gucci.DAO.DAO;
 
 @Document(collection = "Annonce")
 public class Annonce {
     @Id
     String id;
+    @NonNull
     User user;
+    @NonNull
     Categorie cat;
+    @NonNull
     Marque marque;
+    @NonNull
     Modele modele;
+    @NonNull
     float prix;
+    @NonNull
     int annee;
+    @NonNull
+    String libelle;
+    @NonNull
     String description;
+    @NonNull
     Type type;
+    @NonNull
     int place;
     float kilometrique;
+    @NonNull
     Etat etatVehicule;
+    @NonNull
     Transmission transmission;
+    @NonNull
     Energie energie;
     float cylindre;
     float puissance;
     float nbrCylindre;
     int etatAnnonce;
     Date date;
+    @NonNull
     List<String> images;
 
     public Annonce(Connection con,DAO req, String cat, String marque, String modele, String prix, String annee, String description, String type,
             String place, String kilometrique, String etatVehicule, String transmission, String energie,
-            String cylindre, String puissance, String nbrCylindre) throws Exception{
+            String cylindre, String puissance, String nbrCylindre,String libelle) throws Exception{
         this.setAnnee(annee);
         this.setCategorie(cat, req, con);
         this.setCylindre(cylindre);
@@ -50,6 +68,7 @@ public class Annonce {
         this.setPrix(prix);
         this.setPuissance(puissance);
         this.setTransmission(transmission, req, con);
+        this.setLibelle(libelle);
     }
 
     public Annonce(User user, Categorie cat, Marque marque, Modele modele, float prix, int annee, String description,
@@ -94,6 +113,7 @@ public class Annonce {
 
     public void setCategorie(String categorie, DAO req, Connection con) throws Exception {
         if (categorie != null && !categorie.equals("")) {
+            System.out.println(categorie);
             Categorie cat = new Categorie();
             cat.setId(categorie);
             this.cat = (Categorie) req.select(con, cat).get(0);
@@ -301,6 +321,14 @@ public class Annonce {
 
     public void setCat(Categorie cat) {
         this.cat = cat;
+    }
+
+    public String getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
     
