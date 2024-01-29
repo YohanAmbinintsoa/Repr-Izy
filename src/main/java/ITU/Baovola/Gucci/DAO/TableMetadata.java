@@ -210,6 +210,7 @@ public class TableMetadata {
                 updateColumn+=this.columns.get(i).getKeyValue()+",";
             }
         }
+        System.out.println(updateColumn);
         updateColumn=updateColumn.substring(0, updateColumn.lastIndexOf(","));
         updateSyntax=updateSyntax.replace("{predicate}", updateColumn);
         String idName=this.getId().getColumnName()+"="+FieldData.toFormattedFormObject(id);
