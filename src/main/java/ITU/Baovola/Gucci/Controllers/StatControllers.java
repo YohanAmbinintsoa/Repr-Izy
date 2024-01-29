@@ -9,16 +9,20 @@ import ITU.Baovola.Gucci.Models.UserStatistics;
 import ITU.Baovola.Gucci.Security.Authority;
 import ITU.Baovola.Gucci.Security.MyContext;
 import ITU.Baovola.Gucci.Security.Role;
+import ITU.Baovola.Gucci.Services.DocumentService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.Connection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("api/v1/stats")
 public class StatControllers extends BaseController{
-    
+    @Autowired
+    DocumentService service;
+
     @GetMapping("user")
     @Authority(role = Role.ADMIN)
     public ResponseData userStat(HttpServletRequest req) {
@@ -38,7 +42,9 @@ public class StatControllers extends BaseController{
         Connection con=null;
         try {
             con=MyContext.getRequester().connect();
-            data.addData(new Dashboard(con));
+            Dashboard dash=new Dashboard(con);
+            dash.setNonvalide(this.service.countNonValide());
+            data.addData(dash);
         } catch (Exception e) {
             e.printStackTrace();
             data.setError(e.getMessage());

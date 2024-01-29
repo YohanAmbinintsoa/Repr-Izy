@@ -2,15 +2,8 @@ package ITU.Baovola.Gucci.Models;
 
 import java.sql.Connection;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import ITU.Baovola.Gucci.Services.DocumentService;
-
-@Component
 public class Dashboard {
-    private DocumentService mongo;
-    
     float chiffre;
     long nonvalide;
     int client;
@@ -22,7 +15,6 @@ public class Dashboard {
     public Dashboard(Connection con) throws Exception{
         this.chiffre=Transactions.getChiffreAffaire(con);
         this.client=User.countClient(con);
-        this.nonvalide=mongo.countNonValide();
         this.vente=Vente.countVente(con);
     }
     
@@ -51,9 +43,5 @@ public class Dashboard {
 
     public void setNonvalide(long nonvalide) {
         this.nonvalide = nonvalide;
-    }
-    @Autowired
-    public void setMongo(DocumentService mongo) {
-        this.mongo = mongo;
     }
 }
