@@ -56,7 +56,7 @@ public class DocumentService {
     }
 
     public long countUserAnnonce(String userid){
-        Criteria  criteria=Criteria.where("user.idtilisateur").is(userid);
+        Criteria  criteria=Criteria.where("user._id").is(userid);
         Query query=new Query(criteria);
         return mongoTemplate.count(query, "Annonce");
     }
