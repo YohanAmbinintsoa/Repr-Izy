@@ -28,6 +28,7 @@ public class User {
     String nomUser;
     @Column(name = "mdp")
     String mdp;
+    int vente;
 
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
@@ -59,6 +60,16 @@ public class User {
             nombre=res.getInt("count");
         }
         return nombre;
+    }
+
+    public int countVente(Connection con) throws Exception{
+        Statement statement=con.createStatement();
+        ResultSet res=statement.executeQuery("SELECT COUNT(*) AS nbre FROM vente WHERE  idutilisateur="+this.getId());
+        int nbre=0;
+        if (res.next()) {
+            nbre=res.getInt("nbre");
+        }
+        return nbre;
     }
 
     public String getId() {
@@ -134,5 +145,13 @@ public class User {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public int getVente() {
+        return vente;
+    }
+
+    public void setVente(int vente) {
+        this.vente = vente;
     }
 }
