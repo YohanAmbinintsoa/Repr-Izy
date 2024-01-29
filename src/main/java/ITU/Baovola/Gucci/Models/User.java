@@ -29,8 +29,6 @@ public class User {
     @Column(name = "mdp")
     String mdp;
 
-    Integer vente;
-
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
         Connection con=dao.connect();
@@ -148,12 +146,5 @@ public class User {
         this.mdp = mdp;
     }
 
-    public Integer getVente() {
-        return vente;
-    }
-
-    public void setVente(Integer vente) {
-        this.vente = vente;
-    }
 
 }
