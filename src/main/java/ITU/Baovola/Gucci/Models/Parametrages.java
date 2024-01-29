@@ -13,7 +13,7 @@ public class Parametrages {
     String id;
     @Column(name = "prixmin")
     Float prixmin;
-    @Column(name = "primax")
+    @Column(name = "prixmax")
     Float prixmax;
     @Column(name = "pourcentage")
     Float pourcentage;
