@@ -40,7 +40,7 @@ public class ClientController extends BaseController{
             User user=new User();
             user.setId(iduser);
             User alefa=(User)this.requester.select(con, user).get(0);
-            alefa.setVente(alefa.countVente(con));
+            // alefa.setVente(alefa.countVente(con));
             data.addData(alefa);
         } catch (Exception e) {
             e.printStackTrace();
