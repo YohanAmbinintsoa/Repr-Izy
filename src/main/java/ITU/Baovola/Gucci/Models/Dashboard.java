@@ -3,9 +3,11 @@ package ITU.Baovola.Gucci.Models;
 import java.sql.Connection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import ITU.Baovola.Gucci.Services.DocumentService;
 
+@Component
 public class Dashboard {
     private DocumentService mongo;
     

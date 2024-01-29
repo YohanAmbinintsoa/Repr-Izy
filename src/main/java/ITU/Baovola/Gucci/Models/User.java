@@ -32,6 +32,7 @@ public class User {
     String image;
 
     Integer vente;
+    Long annonce;
 
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
@@ -68,7 +69,7 @@ public class User {
 
     public int countVente(Connection con) throws Exception{
         Statement statement=con.createStatement();
-        ResultSet res=statement.executeQuery("SELECT COUNT(*) AS nbre FROM vente WHERE  idutilisateur="+this.getId());
+        ResultSet res=statement.executeQuery("SELECT COUNT(*) AS nbre FROM vente WHERE vendeur='"+this.getId()+"'");
         int nbre=0;
         if (res.next()) {
             nbre=res.getInt("nbre");
@@ -165,6 +166,14 @@ public class User {
 
     public void setVente(Integer vente) {
         this.vente = vente;
+    }
+
+    public Long getAnnonce() {
+        return annonce;
+    }
+
+    public void setAnnonce(Long annonce) {
+        this.annonce = annonce;
     }
 
 
