@@ -31,6 +31,8 @@ public class User {
     @Column(name = "image")
     String image;
 
+    Integer vente;
+
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
         Connection con=dao.connect();
@@ -155,6 +157,14 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Integer getVente() {
+        return vente;
+    }
+
+    public void setVente(Integer vente) {
+        this.vente = vente;
     }
 
 
