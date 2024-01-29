@@ -60,4 +60,10 @@ public class DocumentService {
         Query query=new Query(criteria);
         return mongoTemplate.count(query, "Annonce");
     }
+
+    public List<Annonce> getAnnoncesUser(String userid){
+        Criteria  criteria=Criteria.where("user._id").is(userid);
+        Query query=new Query(criteria);
+        return mongoTemplate.find(query, Annonce.class);
+    }
 }

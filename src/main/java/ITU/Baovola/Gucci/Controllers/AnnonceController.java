@@ -207,6 +207,19 @@ public class AnnonceController extends BaseController{
         return data;
     }
 
+    @GetMapping("/client/{iduser}")
+    @Authority(role = {Role.ADMIN,Role.USER})
+    public ResponseData getClient(@PathVariable("iduser") String id) {
+        ResponseData data=new ResponseData();
+        try {
+            data.addData(this.service.getAnnoncesUser(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        }
+        return data;
+    }
+
     @PostMapping("/search")
     @Authority(role = {Role.ADMIN,Role.USER})
     public ResponseData search(HttpServletRequest req) {
