@@ -16,8 +16,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class DocumentService {
-    @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    public void setMongoTemplate(MongoTemplate mongo){
+        this.mongoTemplate=mongo;
+    }
 
     public void updateFieldById(String id, int newFieldValue) {
         Query query = new Query(Criteria.where("id").is(id));

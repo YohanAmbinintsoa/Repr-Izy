@@ -2,10 +2,13 @@ package ITU.Baovola.Gucci.Models;
 
 import java.sql.Connection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ITU.Baovola.Gucci.Services.DocumentService;
 
 public class Dashboard {
-    private DocumentService mongo=new DocumentService();
+    private DocumentService mongo;
+    
     float chiffre;
     long nonvalide;
     int client;
@@ -46,5 +49,9 @@ public class Dashboard {
 
     public void setNonvalide(long nonvalide) {
         this.nonvalide = nonvalide;
+    }
+    @Autowired
+    public void setMongo(DocumentService mongo) {
+        this.mongo = mongo;
     }
 }
