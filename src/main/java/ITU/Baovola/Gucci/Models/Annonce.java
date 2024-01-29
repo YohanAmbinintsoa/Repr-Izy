@@ -62,6 +62,7 @@ public class Annonce {
         this.setEtatVehicule(etatVehicule, req, con);
         this.setType(type,req,con);
         this.setImages(images);
+        this.setModele(modele,req,con);
         this.setKilometrique(kilometrique);
         this.setMarque(marque, req, con);
         this.setNbrCylindre(nbrCylindre);

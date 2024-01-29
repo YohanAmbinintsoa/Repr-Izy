@@ -1,5 +1,9 @@
 package ITU.Baovola.Gucci.Models;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import ITU.Baovola.Gucci.DAO.Column;
 import ITU.Baovola.Gucci.DAO.Generation;
 import ITU.Baovola.Gucci.DAO.Id;
@@ -21,6 +25,15 @@ public class Vente {
         this.acheteur = acheteur;
     }
     public Vente() {
+    }
+    public static int countVente(Connection con) throws Exception{
+        int nombre=0;
+        Statement state=con.createStatement();
+        ResultSet res=state.executeQuery("select count(*) as count from vente");
+        if (res.next()) {
+            nombre=res.getInt("count");
+        }
+        return nombre;
     }
     public String getId() {
         return id;

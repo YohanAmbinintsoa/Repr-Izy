@@ -43,4 +43,11 @@ public class DocumentService {
         query.addCriteria(Criteria.where("user").is(user).and("etatannonce").is(10));
         return mongoTemplate.find(query, Annonce.class);
     }
+
+    public long countNonValide(){
+        Criteria criteria=Criteria.where("etatAnnonce").is("0");
+        Query query = new Query(criteria);
+
+        return mongoTemplate.count(query, "Annonce");
+    }
 }

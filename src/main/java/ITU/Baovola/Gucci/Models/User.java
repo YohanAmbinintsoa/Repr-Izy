@@ -51,6 +51,16 @@ public class User {
     public User() {
     }
 
+    public static int countClient(Connection con) throws Exception{
+        int nombre=0;
+        Statement statement=con.createStatement();
+        ResultSet res=statement.executeQuery("select COUNT(*) as count from utilisateur where role='user'");
+        if (res.next()) {
+            nombre=res.getInt("count");
+        }
+        return nombre;
+    }
+
     public String getId() {
         return id;
     }
