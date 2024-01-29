@@ -72,7 +72,7 @@ public class VenteController {
     public ResponseData geVente() {
         ResponseData data=new ResponseData();
         try {
-            
+            data.addData(this.requester.select(null,new Ventes()));
         } catch (Exception e) {
            e.printStackTrace();
            data.setError(e.getMessage());

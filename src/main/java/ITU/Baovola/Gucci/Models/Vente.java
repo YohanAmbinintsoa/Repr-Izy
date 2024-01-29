@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.springframework.data.annotation.Reference;
+
 import ITU.Baovola.Gucci.DAO.Column;
 import ITU.Baovola.Gucci.DAO.Generation;
 import ITU.Baovola.Gucci.DAO.Id;
+import ITU.Baovola.Gucci.DAO.Referenced;
 import ITU.Baovola.Gucci.DAO.Table;
 
 @Table(name = "vente")
@@ -19,6 +22,11 @@ public class Vente {
     String vendeur;
     @Column(name = "acheteur")
     String acheteur;
+    @Referenced(pk = "idutilisateur",fk = "vendeur")
+    User userVendeur;
+    @Referenced(pk = "idutilisateur",fk = "acheteur")
+    User userAcheteur;
+    
     public Vente(String idannonce, String vendeur, String acheteur) {
         this.idannonce = idannonce;
         this.vendeur = vendeur;
@@ -58,5 +66,17 @@ public class Vente {
     }
     public void setAcheteur(String acheteur) {
         this.acheteur = acheteur;
+    }
+    public User getUserVendeur() {
+        return userVendeur;
+    }
+    public void setUserVendeur(User userVendeur) {
+        this.userVendeur = userVendeur;
+    }
+    public User getUserAcheteur() {
+        return userAcheteur;
+    }
+    public void setUserAcheteur(User userAcheteur) {
+        this.userAcheteur = userAcheteur;
     }
 }
