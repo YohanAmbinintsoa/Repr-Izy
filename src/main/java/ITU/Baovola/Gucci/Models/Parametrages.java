@@ -24,7 +24,7 @@ public class Parametrages {
         this.pourcentage = pourcentage;
     }
 
-    public static Parametrages getParametrages(float prix) throws Exception{
+    public static Parametrages getParametrages(float prix,float user_price) throws Exception{
         Connection con=MyContext.getRequester().connect();
         Parametrages param=null;
         Statement state=con.createStatement();
@@ -36,6 +36,10 @@ public class Parametrages {
             param.setPourcentage(res.getFloat("pourcentage"));
             param.setId(res.getString("idparametre"));
         }
+        if (user_price<param.getPrixmin()) {
+            throw new Exception("Le prix de l'utilisateur est inférieur au prix minimal autorisé");
+        }
+        con.close();
         return param;
     }
     
