@@ -48,7 +48,7 @@ public class VenteController {
             Parametrages params=Parametrages.getParametrages(annonce.getPrix(),prix);
             Vente vente=new Vente(annonce.getId(), vendeur.getId(), acheteur.getId());
             MyContext.getRequester().insert(con, vente);
-            float commission=params.getPourcentage()*annonce.getPrix()/100;
+            float commission=params.getPourcentage()*prix/100;
             Transactions trans=new Transactions(commission, 0f, new Timestamp(System.currentTimeMillis()));
             MyContext.getRequester().insert(con, trans);
             service.updateFieldById(annonce.getId(), 20);
