@@ -72,7 +72,7 @@ public class VenteController extends BaseController{
     public ResponseData geVente() {
         ResponseData data=new ResponseData();
         try {
-            data.addData(this.requester.select(null,new Ventes()));
+            data.addData(this.requester.select(null,new Vente()));
         } catch (Exception e) {
            e.printStackTrace();
            data.setError(e.getMessage());
