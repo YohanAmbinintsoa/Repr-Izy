@@ -28,7 +28,8 @@ public class User {
     String nomUser;
     @Column(name = "mdp")
     String mdp;
-    int vente;
+
+    Integer vente;
 
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
@@ -147,11 +148,12 @@ public class User {
         this.mdp = mdp;
     }
 
-    public int getVente() {
+    public Integer getVente() {
         return vente;
     }
 
-    public void setVente(int vente) {
+    public void setVente(Integer vente) {
         this.vente = vente;
     }
+
 }
