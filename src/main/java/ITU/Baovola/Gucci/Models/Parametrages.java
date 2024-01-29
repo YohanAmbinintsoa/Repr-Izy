@@ -36,7 +36,12 @@ public class Parametrages {
             param.setPourcentage(res.getFloat("pourcentage"));
             param.setId(res.getString("idparametre"));
         }
-        if (user_price<param.getPrixmin()) {
+        if (param==null) {
+            param=new Parametrages();
+            param.setPrixmin(SeuilPourcentage.getPourcentage(con).getSeuil());
+            param.setPourcentage(SeuilPourcentage.getPourcentage(con).getPourcentage());
+        }
+        if (user_price<prixmin) {
             throw new Exception("Le prix de l'utilisateur est inférieur au prix minimal autorisé");
         }
         con.close();

@@ -106,6 +106,12 @@ GROUP BY
 ORDER BY
     years.year, months.month;
 
+create TABLE seuilPourcentage(
+   seuil FLOAT,
+   pourcentage FLOAT,
+   date DATE
+);
+
 CREATE TABLE Vente(
    idvente VARCHAR(50) ,
    idannonce VARCHAR(255) ,
