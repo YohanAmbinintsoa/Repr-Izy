@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("api/v1/Ventes")
-public class VenteController {
+public class VenteController extends BaseController{
     @Autowired
     private AnnonceRepository repo;
 
