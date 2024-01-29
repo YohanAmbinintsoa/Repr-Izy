@@ -49,6 +49,7 @@ public class ClientController extends BaseController{
             User alefa=(User)this.requester.select(con, user).get(0);
             alefa.setVente(alefa.countVente(con));
             alefa.setAnnonce(service.countUserAnnonce(alefa.getId()));
+            alefa.setMdp(null);
             data.addData(alefa);
         } catch (Exception e) {
             e.printStackTrace();

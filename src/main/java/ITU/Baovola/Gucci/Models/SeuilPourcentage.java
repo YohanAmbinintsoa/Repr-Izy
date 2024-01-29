@@ -10,12 +10,16 @@ import ITU.Baovola.Gucci.DAO.Table;
 
 @Table(name = "seuilpourcentage")
 public class SeuilPourcentage {
-    @Column(name = "seuil")
-    Float seuil;
+    @Column(name = "seuilmin")
+    Float seuilmin;
     @Column(name = "date")
     Date date;
-    @Column(name = "pourcentage")
-    Float pourcentage;
+    @Column(name = "pourcentagemin")
+    Float pourcentagemin;
+    @Column(name = "seuilmax")
+    Float seuilmax;
+    @Column(name = "pourcentagemax")
+    Float pourcentagemax;
     
     public SeuilPourcentage() {
     }
@@ -25,32 +29,53 @@ public class SeuilPourcentage {
         Statement state=con.createStatement();
         ResultSet res=state.executeQuery("SELECT * FROM seuilpourcentage where date=(select max(date) from seuilpourcentage)");
         if (res.next()) {
-           pourcentage.setPourcentage(res.getFloat("pourcentage"));
-           pourcentage.setSeuil(res.getFloat("seuil"));
+           pourcentage.setPourcentagemax(res.getFloat("pourcentagemax"));
+           pourcentage.setPourcentagemin(res.getFloat("pourcentagemin"));
+           pourcentage.setSeuilmax(res.getFloat("seuilmax"));
+           pourcentage.setSeuilmin(res.getFloat("seuilmin"));
            pourcentage.setDate(res.getDate("date"));
         }
         return pourcentage;
     }
 
-    public Float getSeuil() {
-        return seuil;
+    public Float getSeuilmin() {
+        return seuilmin;
     }
-    public void setSeuil(Float seuil) {
-        this.seuil = seuil;
+
+    public void setSeuilmin(Float seuilmin) {
+        this.seuilmin = seuilmin;
     }
+
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public Float getPourcentage() {
-        return pourcentage;
+    public Float getPourcentagemin() {
+        return pourcentagemin;
     }
 
-    public void setPourcentage(Float pourcentage) {
-        this.pourcentage = pourcentage;
+    public void setPourcentagemin(Float pourcentagemin) {
+        this.pourcentagemin = pourcentagemin;
+    }
+
+    public Float getSeuilmax() {
+        return seuilmax;
+    }
+
+    public void setSeuilmax(Float seuilmax) {
+        this.seuilmax = seuilmax;
+    }
+
+    public Float getPourcentagemax() {
+        return pourcentagemax;
+    }
+
+    public void setPourcentagemax(Float pourcentagemax) {
+        this.pourcentagemax = pourcentagemax;
     }
 
     

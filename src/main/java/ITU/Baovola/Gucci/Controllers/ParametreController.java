@@ -13,9 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Date;
-
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -58,11 +56,15 @@ public class ParametreController extends BaseController{
     public ResponseData postMethodName(HttpServletRequest req) {
         ResponseData data=new ResponseData();
         try {
-            float seuil=Float.parseFloat(req.getParameter("seuil"));
-            float pourcentage=Float.parseFloat(req.getParameter("pourcentage"));
+            float seuilmin=Float.parseFloat(req.getParameter("seuilmin"));
+            float pourcentagemin=Float.parseFloat(req.getParameter("pourcentagemin"));
+            float seuilmax=Float.parseFloat(req.getParameter("seuilmax"));
+            float pourcentagemax=Float.parseFloat(req.getParameter("pourcentagemax"));
             SeuilPourcentage p=new SeuilPourcentage();
-            p.setSeuil(seuil);
-            p.setPourcentage(pourcentage);
+            p.setSeuilmin(seuilmin);
+            p.setSeuilmax(seuilmax);
+            p.setPourcentagemin(pourcentagemin);
+            p.setPourcentagemax(pourcentagemax);
             p.setDate(new Date(System.currentTimeMillis()));
             data.addData(this.requester.insert(null, p));
         } catch (Exception e) {

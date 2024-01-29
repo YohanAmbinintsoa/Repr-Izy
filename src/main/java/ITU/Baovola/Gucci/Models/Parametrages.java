@@ -37,9 +37,14 @@ public class Parametrages {
             param.setId(res.getString("idparametre"));
         }
         if (param==null) {
+            SeuilPourcentage seuil=SeuilPourcentage.getPourcentage(con);
             param=new Parametrages();
-            param.setPrixmin(SeuilPourcentage.getPourcentage(con).getSeuil());
-            param.setPourcentage(SeuilPourcentage.getPourcentage(con).getPourcentage());
+            param.setPrixmin(seuil.getSeuilmin());
+            param.setPrixmax(seuil.getSeuilmax());
+            param.setPourcentage(seuil.getPourcentagemin());
+            if (prix>seuil.getSeuilmax()) {
+                param.setPourcentage(seuil.getPourcentagemax());
+            }
         }
         if (user_price<param.getPrixmin()) {
             throw new Exception("Le prix de l'utilisateur est inférieur au prix minimal autorisé");

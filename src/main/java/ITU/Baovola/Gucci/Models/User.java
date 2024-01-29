@@ -60,7 +60,7 @@ public class User {
     public static int countClient(Connection con) throws Exception{
         int nombre=0;
         Statement statement=con.createStatement();
-        ResultSet res=statement.executeQuery("select COUNT(*) as count from utilisateur where role='user'");
+        ResultSet res=statement.executeQuery("select COUNT(*) as count from utilisateur where role='USER'");
         if (res.next()) {
             nombre=res.getInt("count");
         }

@@ -108,8 +108,10 @@ ORDER BY
     years.year, months.month;
 
 create TABLE seuilPourcentage(
-   seuil FLOAT,
-   pourcentage FLOAT,
+   seuilmin FLOAT,
+   seuilmax  FLOAT,
+   pourcentagemin FLOAT,
+   pourcentagemax FLOAT,
    date DATE
 );
 
