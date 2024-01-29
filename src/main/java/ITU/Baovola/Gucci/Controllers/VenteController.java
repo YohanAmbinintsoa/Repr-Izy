@@ -53,6 +53,7 @@ public class VenteController {
             MyContext.getRequester().insert(con, trans);
             service.updateFieldById(annonce.getId(), 20);
             con.commit();
+            data.addData("Vente Reussie!");
         } catch (Exception e) {
            e.printStackTrace();
            data.setError(e.getMessage());
