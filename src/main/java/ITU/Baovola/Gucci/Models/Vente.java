@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import org.springframework.data.annotation.Reference;
-
 import ITU.Baovola.Gucci.DAO.Column;
 import ITU.Baovola.Gucci.DAO.Generation;
 import ITU.Baovola.Gucci.DAO.Id;
-import ITU.Baovola.Gucci.DAO.Referenced;
 import ITU.Baovola.Gucci.DAO.Table;
 
 @Table(name = "vente")

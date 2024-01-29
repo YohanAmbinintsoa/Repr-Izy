@@ -32,7 +32,7 @@ public class ChatService {
 
     public List<Conversation> getCurrentUserConversations(User user){
         Query query=new Query();
-        query.addCriteria(Criteria.where("utilisateurs").in(user.getId()));
+        query.addCriteria(Criteria.where("utilisateurs").elemMatch(Criteria.where("_id").is(user.getId())));
         return mongo.find(query, Conversation.class);
     }
 }
