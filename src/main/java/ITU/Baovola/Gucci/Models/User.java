@@ -28,6 +28,8 @@ public class User {
     String nomUser;
     @Column(name = "mdp")
     String mdp;
+    @Column(name = "image")
+    String image;
 
     public static User login(String username,String password,DAO dao) throws Exception{
         User user=null;
@@ -44,6 +46,7 @@ public class User {
             user.setDtn(res.getDate("dtn"));
             user.setRole(res.getString("role"));
             user.setNomUser(username);
+            user.setImage(res.getString("image"));
         }
         return user;
     }
@@ -144,6 +147,14 @@ public class User {
 
     public void setMdp(String mdp) {
         this.mdp = mdp;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 

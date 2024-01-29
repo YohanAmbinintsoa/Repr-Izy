@@ -7,6 +7,7 @@ import ITU.Baovola.Gucci.DTO.JwtResponse;
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.User;
 import ITU.Baovola.Gucci.Security.JwtUtils;
+import ITU.Baovola.Gucci.Services.Photo;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.Date;
@@ -56,6 +57,8 @@ public class LoginController extends BaseController{
             user.setRole("USER");
             System.out.println(user.getRole());
             user.setDateInscription(new Date(System.currentTimeMillis()));
+            String image=this.imageService.upload(new Photo(req.getParameter("image"), "user.png"));
+            user.setImage(image);
             user=this.requester.insert(null, user);
             String token=utils.generateJwtToken(user);
             user.setMdp(null);

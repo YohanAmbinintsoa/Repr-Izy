@@ -83,6 +83,7 @@ CREATE TABLE Utilisateur(
    dateinscription DATE,
    nomutilisateur VARCHAR(50) ,
    mdp VARCHAR(50) ,
+   image VARCHAR(255),
    PRIMARY KEY(idUtilisateur)
 );
 
