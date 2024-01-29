@@ -165,19 +165,19 @@ public class TableMetadata {
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
             FieldData data=new FieldData(fields[i], toCreate);
-            if (data.getColumnName()!=null) {
-                Object joinObject=this.generateJoinField(data, res);
-                if (joinObject!=null) {
-                    Method setter=newObj.getClass().getMethod("set"+MyParser.toUpperCase(fields[i].getName()), data.type);
-                    setter.invoke(newObj, joinObject);
-                } else {
+            Object joinObject=this.generateJoinField(data, res);
+            if (joinObject!=null) {
+                Method setter=newObj.getClass().getMethod("set"+MyParser.toUpperCase(fields[i].getName()), data.type);
+                setter.invoke(newObj, joinObject);
+            } else {
+                    if (data.getColumnName()!=null) {
                     Object databaseObject=res.getObject(data.getColumnName());
-                    if (databaseObject!=null) {
-                        databaseObject=MyParser.parse(databaseObject, data.type);
-                        Method setter=newObj.getClass().getMethod("set"+MyParser.toUpperCase(fields[i].getName()), data.type);
-                        setter.invoke(newObj, databaseObject);
+                        if (databaseObject!=null) {
+                            databaseObject=MyParser.parse(databaseObject, data.type);
+                            Method setter=newObj.getClass().getMethod("set"+MyParser.toUpperCase(fields[i].getName()), data.type);
+                            setter.invoke(newObj, databaseObject);
+                        }
                     }
-                }
             }
         }
         return (T) newObj;
