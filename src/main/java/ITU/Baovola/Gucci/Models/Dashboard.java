@@ -2,14 +2,10 @@ package ITU.Baovola.Gucci.Models;
 
 import java.sql.Connection;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.integration.IntegrationProperties.RSocket.Client;
-
 import ITU.Baovola.Gucci.Services.DocumentService;
 
 public class Dashboard {
-    @Autowired
-    private DocumentService mongo;
+    private DocumentService mongo=new DocumentService();
     float chiffre;
     long nonvalide;
     int client;
