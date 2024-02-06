@@ -97,7 +97,6 @@ public class AnnonceController extends BaseController{
     }
 
     @GetMapping()
-    @Authority(role = Role.ADMIN)
     public ResponseData getAll() {
         ResponseData data=new ResponseData();
         try {
@@ -165,7 +164,6 @@ public class AnnonceController extends BaseController{
     }
 
     @GetMapping("newAnnonce")
-    @Authority(role = Role.USER)
     public ResponseData newAnnonce() {
         ResponseData data=new ResponseData();
         Connection con=null;
@@ -192,7 +190,6 @@ public class AnnonceController extends BaseController{
     }
 
     @GetMapping("/search/{iduser}")
-    @Authority(role = {Role.ADMIN,Role.USER})
     public ResponseData searchUser(@PathVariable("iduser") String id) {
         ResponseData data=new ResponseData();
         try {
