@@ -35,6 +35,7 @@ public class ImageService {
   }
 
   private String getExtension(String fileName) {
+    System.out.println("FILENAME="+fileName);
       return fileName.substring(fileName.lastIndexOf("."));
   }
 
