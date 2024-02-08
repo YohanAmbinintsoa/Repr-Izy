@@ -69,6 +69,7 @@ public class ConversationController extends BaseController{
     }
     
     @PostMapping("/newMessage")
+    @Authority(role = Role.USER)
     public ResponseData newMessage(HttpServletRequest req) {
         ResponseData data=new ResponseData();
         try {
