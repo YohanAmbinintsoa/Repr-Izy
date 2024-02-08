@@ -44,6 +44,7 @@ public class DocumentService {
                     Criteria criteria = Criteria.where(element+"._id").is(value);
                     query.addCriteria(criteria);
                 } catch (IllegalArgumentException e) {
+                    System.out.println("Fq tsy neyty ehhh");
                     // Si ce n'est pas un ObjectId, traitez-le comme une valeur normale
                     Criteria criteria = Criteria.where(element).is(value);
                     query.addCriteria(criteria);
