@@ -51,7 +51,7 @@ public class ImageService {
         List<String> images=new ArrayList<>();
         for (int i = 0; i < photos.length; i++) {
             Photo photo = new Photo(photos[i],"image"+i);
-            photo.convertToFile();
+            // photo.convertToFile();
             images.add(this.upload(photo));
         }
         return images;
