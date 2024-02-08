@@ -29,6 +29,7 @@ public class Photo {
             System.out.println(filename+"."+format);
             File outputImage = new File(filename+"."+format);
             ImageIO.write(ImageIO.read(inputStream), format, outputImage);
+            this.setFilename(filename+"."+format);
             return outputImage;
         } else {
             throw new IllegalArgumentException("Invalid base64 image format");
