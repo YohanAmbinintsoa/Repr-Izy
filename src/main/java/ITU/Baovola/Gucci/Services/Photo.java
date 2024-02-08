@@ -26,7 +26,7 @@ public class Photo {
             base64 = base64.substring(matcher.end());
             byte[] decodedBytes = Base64.getDecoder().decode(base64);
             ByteArrayInputStream inputStream = new ByteArrayInputStream(decodedBytes);
-            
+            System.out.println(filename+"."+format);
             File outputImage = new File(filename+"."+format);
             ImageIO.write(ImageIO.read(inputStream), format, outputImage);
             
