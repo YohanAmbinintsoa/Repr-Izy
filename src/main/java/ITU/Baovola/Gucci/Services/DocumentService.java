@@ -31,21 +31,22 @@ public class DocumentService {
     }
 
     public List<Annonce> search(HttpServletRequest req) {
-        Query query=new Query();
-        Enumeration<String> names=req.getParameterNames();
+        Query query = new Query();
+        Enumeration<String> names = req.getParameterNames();
         while (names.hasMoreElements()) {
-            String element=names.nextElement();
-            String value=req.getParameter(element);
-            if (element!=null&&!element.equals("")) {
-            try {
-                ObjectId objectId = new ObjectId(value);
-                Criteria criteria = Criteria.where(element).is(objectId);
-                query.addCriteria(criteria);
-            } catch (IllegalArgumentException e) {
-                // If it's not an ObjectId, treat it as a regular value
-                Criteria criteria = Criteria.where(element).is(value);
-                query.addCriteria(criteria);
-            }
+            String element = names.nextElement();
+            String value = req.getParameter(element);
+            if (element != null && !element.equals("")) {
+                try {
+                    ObjectId objectId = new ObjectId(value);
+                    // Si le champ est un ObjectId, interrogez directement sur cet ObjectId
+                    Criteria criteria = Criteria.where(element).is(objectId);
+                    query.addCriteria(criteria);
+                } catch (IllegalArgumentException e) {
+                    // Si ce n'est pas un ObjectId, traitez-le comme une valeur normale
+                    Criteria criteria = Criteria.where(element).is(value);
+                    query.addCriteria(criteria);
+                }
             }
         }
         return mongoTemplate.find(query, Annonce.class);
