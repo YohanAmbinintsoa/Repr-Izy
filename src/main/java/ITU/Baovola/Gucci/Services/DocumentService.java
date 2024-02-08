@@ -38,8 +38,10 @@ public class DocumentService {
             String element = names.nextElement();
             String value = req.getParameter(element);
             if (element != null && !element.equals("")) {
-                Criteria criteria = Criteria.where(element+"._id").is(value).orOperator(Criteria.where(element).is(value));
-                query.addCriteria(criteria);
+                Criteria criteria = new Criteria().orOperator(
+                    Criteria.where(element).is(value),
+                    Criteria.where(element + "._id").is(value)
+                );
             }
         }
         return mongoTemplate.find(query, Annonce.class);
