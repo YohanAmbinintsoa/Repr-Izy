@@ -40,7 +40,7 @@ public class DocumentService {
                 try {
                     ObjectId objectId = new ObjectId(value);
                     // Si le champ est un ObjectId, interrogez directement sur cet ObjectId
-                    Criteria criteria = Criteria.where(element).is(objectId);
+                    Criteria criteria = Criteria.where(element+"._id").is(objectId);
                     query.addCriteria(criteria);
                 } catch (IllegalArgumentException e) {
                     // Si ce n'est pas un ObjectId, traitez-le comme une valeur normale
