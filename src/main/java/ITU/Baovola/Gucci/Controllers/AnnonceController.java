@@ -244,7 +244,6 @@ public class AnnonceController extends BaseController{
     }
 
     @PostMapping("/search")
-    @Authority(role = {Role.ADMIN,Role.USER})
     public ResponseData search(HttpServletRequest req) {
         ResponseData data=new ResponseData();
         try {
