@@ -254,4 +254,18 @@ public class AnnonceController extends BaseController{
         } 
         return data;
     }
+
+    @GetMapping("/price")
+    public ResponseData getPrice(HttpServletRequest req) {
+        ResponseData data=new ResponseData();
+        try {
+            float min=Float.parseFloat(req.getParameter("min"));
+            float max=Float.parseFloat(req.getParameter("max"));
+           data.addData(this.service.findProductsWithPriceRange(min, max));
+        } catch (Exception e) { 
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        } 
+        return data;
+    }
 }

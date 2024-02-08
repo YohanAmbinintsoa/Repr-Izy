@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -39,8 +40,7 @@ public class DocumentService {
             if (element != null && !element.equals("")) {
                 try {
                     ObjectId objectId = new ObjectId(value);
-                    // Si le champ est un ObjectId, interrogez directement sur cet ObjectId
-                    Criteria criteria = Criteria.where(element+"._id").is(objectId);
+                    Criteria criteria = Criteria.where(element+"._id").is(value);
                     query.addCriteria(criteria);
                 } catch (IllegalArgumentException e) {
                     // Si ce n'est pas un ObjectId, traitez-le comme une valeur normale
@@ -74,6 +74,14 @@ public class DocumentService {
     public List<Annonce> getAnnoncesUser(String userid){
         Criteria  criteria=Criteria.where("user._id").is(userid);
         Query query=new Query(criteria);
+        return mongoTemplate.find(query, Annonce.class);
+    }
+
+    public List<Annonce> findProductsWithPriceRange(float min, float max) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("prix").gt(min).lt(max));
+        query.with(Sort.by(Sort.Direction.ASC, "prix"));
+
         return mongoTemplate.find(query, Annonce.class);
     }
 }
