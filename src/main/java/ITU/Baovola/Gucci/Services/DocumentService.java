@@ -38,17 +38,8 @@ public class DocumentService {
             String element = names.nextElement();
             String value = req.getParameter(element);
             if (element != null && !element.equals("")) {
-                System.out.println("Misy le izy="+value);
-                try {
-                    ObjectId objectId = new ObjectId(value);
-                    Criteria criteria = Criteria.where(element+"._id").is(value);
-                    query.addCriteria(criteria);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Fq tsy neyty ehhh");
-                    // Si ce n'est pas un ObjectId, traitez-le comme une valeur normale
-                    Criteria criteria = Criteria.where(element).is(value);
-                    query.addCriteria(criteria);
-                }
+                Criteria criteria = Criteria.where(element+"._id").is(value).orOperator(Criteria.where(element).is(value));
+                query.addCriteria(criteria);
             }
         }
         return mongoTemplate.find(query, Annonce.class);
