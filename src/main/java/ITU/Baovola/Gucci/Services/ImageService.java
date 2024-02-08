@@ -48,8 +48,8 @@ public class ImageService {
 
   public List<String> upload(String[] photos) throws Exception{
         List<String> images=new ArrayList<>();
-        System.out.println(photos[0]);
         for (int i = 0; i < photos.length; i++) {
+            System.out.println(photos[i]);
             Photo photo = new Photo(photos[i],"image"+i+".png");
             photo.convertToFile();
             images.add(this.upload(photo));
