@@ -38,6 +38,7 @@ public class DocumentService {
             String element = names.nextElement();
             String value = req.getParameter(element);
             if (element != null && !element.equals("")) {
+                System.out.println("Misy le izy="+value);
                 try {
                     ObjectId objectId = new ObjectId(value);
                     Criteria criteria = Criteria.where(element+"._id").is(value);
