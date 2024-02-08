@@ -79,6 +79,7 @@ public class ConversationController extends BaseController{
             other.setId(req.getParameter("iduser"));
             other=(User)MyContext.getRequester().select(null, other).get(0);
             msg.setDate(new Date(System.currentTimeMillis()));
+            msg.setReceiver(other);
             msg.setMessage(req.getParameter("message"));
             data.addData(this.messageRepository.save(msg));
         } catch (Exception e) {
