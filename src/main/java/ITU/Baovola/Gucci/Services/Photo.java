@@ -21,7 +21,7 @@ public class Photo {
     public File convertToFile() throws IOException {
         Pattern pattern = Pattern.compile("data:image/(.*?);base64,");
         Matcher matcher = pattern.matcher(base64);
-        File outputImage = null;
+        File outputImage =  new File(filename+".png");
         if (matcher.find()) {
             String format = matcher.group(1);
             base64 = base64.substring(matcher.end());
