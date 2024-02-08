@@ -19,6 +19,7 @@ public class Photo {
     }
 
     public File convertToFile() throws IOException {
+        System.out.println(this.getBase64());
         Pattern pattern = Pattern.compile("data:image/(.*?);base64,");
         Matcher matcher = pattern.matcher(base64);
         if (matcher.find()) {
