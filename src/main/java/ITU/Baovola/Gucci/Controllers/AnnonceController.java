@@ -163,6 +163,32 @@ public class AnnonceController extends BaseController{
         return data;
     }
 
+    @GetMapping("/favorites")
+    @Authority(role = Role.USER)
+    public ResponseData getFavorites() {
+        ResponseData data=new ResponseData();
+        try {
+            data.addData(favRepo.findByUser(MyContext.getUser()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        }
+        return data;
+    }
+
+    @GetMapping("/myAnnonces")
+    @Authority(role = Role.USER)
+    public ResponseData getMyAnnonces(){
+        ResponseData data=new ResponseData();
+        try {
+           repo.findByUser(MyContext.getUser());
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return data;
+    }
+    
+
     @GetMapping("newAnnonce")
     public ResponseData newAnnonce() {
         ResponseData data=new ResponseData();
