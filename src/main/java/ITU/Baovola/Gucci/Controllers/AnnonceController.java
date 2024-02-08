@@ -181,7 +181,7 @@ public class AnnonceController extends BaseController{
     public ResponseData getMyAnnonces(){
         ResponseData data=new ResponseData();
         try {
-           repo.findByUser(MyContext.getUser());
+           service.getAnnoncesUser(MyContext.getUser().getId());
         } catch (Exception e) {
            e.printStackTrace();
         }
@@ -255,6 +255,4 @@ public class AnnonceController extends BaseController{
         } 
         return data;
     }
-    
-
 }
