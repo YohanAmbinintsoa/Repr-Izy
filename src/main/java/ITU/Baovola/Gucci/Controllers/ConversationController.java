@@ -105,9 +105,9 @@ public class ConversationController extends BaseController{
             users.add((User)this.requester.select(null,user2).get(0));
             Conversation conv=chatService.getConversationOf(users);
             if (conv==null) {
-                System.out.println("ATO ELAH");
                 conv=new Conversation();
                 conv.setUtilisateurs(users);
+                conv=conRepo.save(conv);
             }
             Conversation convUser=conv;
             convUser.setMessages(messageRepository.findByIdConversation(convUser.getId())); 
