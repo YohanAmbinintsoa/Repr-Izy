@@ -155,7 +155,12 @@ public class AnnonceController extends BaseController{
            User currentUser=MyContext.getUser();
            Annonce annonce=repo.findById(id).get();
            FavoriteAnnonce fav=new FavoriteAnnonce(annonce, currentUser);
-           data.addData(favRepo.save(fav));
+           FavoriteAnnonce nisy=service.verifyFavorite(annonce, currentUser);
+           if (nisy!=null) {
+                data.setError("Cette annonce est deja dans les favoris!");
+           } else {
+               data.addData(favRepo.save(fav));
+           }
         } catch (Exception e) { 
             e.printStackTrace();
             data.setError(e.getMessage());

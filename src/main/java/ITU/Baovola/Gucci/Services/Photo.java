@@ -27,10 +27,10 @@ public class Photo {
             byte[] decodedBytes = Base64.getDecoder().decode(base64);
             ByteArrayInputStream inputStream = new ByteArrayInputStream(decodedBytes);
             File outputImage = new File(filename);
+            System.out.println("FILE CREATEDDDD!");
             ImageIO.write(ImageIO.read(inputStream), "jpg", outputImage);
             return outputImage;
     }
-
 
     public String getBase64() {
         return base64;

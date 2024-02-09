@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import ITU.Baovola.Gucci.Models.Annonce;
+import ITU.Baovola.Gucci.Models.FavoriteAnnonce;
 import ITU.Baovola.Gucci.Models.User;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -79,5 +80,12 @@ public class DocumentService {
         query.with(Sort.by(Sort.Direction.ASC, "prix"));
 
         return mongoTemplate.find(query, Annonce.class);
+    }
+
+    public FavoriteAnnonce verifyFavorite(Annonce annonce,User user){
+        Query query=new Query();
+        query.addCriteria(Criteria.where("annonce._id").is(annonce.getId()));
+        query.addCriteria(Criteria.where("user._id").is(user.getId()));
+        return mongoTemplate.findOne(query, FavoriteAnnonce.class);
     }
 }
