@@ -48,6 +48,7 @@ public class SearchModel {
                 query.addCriteria(crit);
             }
         }
+        query.addCriteria(Criteria.where("etatAnnonce").is(10));
         return query;
     }
 
