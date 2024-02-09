@@ -35,4 +35,10 @@ public class ChatService {
         query.addCriteria(Criteria.where("utilisateurs").elemMatch(Criteria.where("_id").is(user.getId())));
         return mongo.find(query, Conversation.class);
     }
+
+    public Conversation getConversationOf(List<User> users){
+        Query query=new Query();
+        query.addCriteria(Criteria.where("utilisateurs").in(users));
+        return mongo.findOne(query, Conversation.class);
+    }
 }

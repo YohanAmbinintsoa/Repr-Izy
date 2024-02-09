@@ -102,6 +102,10 @@ public class Annonce {
             Marque mk=new Marque();
             mk.setId(marque);
             this.marque=(Marque)req.select(con,mk).get(0);
+        } else {
+            Marque m=new Marque();
+            m.setNom("_");
+            this.marque=m;
         }
     }
 
@@ -110,6 +114,10 @@ public class Annonce {
             Modele mk=new Modele();
             mk.setId(modele);
             this.modele=(Modele)req.select(con,mk).get(0);
+        } else {
+            Modele m=new Modele();
+            m.setNom("_");
+            this.modele=m;
         }
     }
 
@@ -119,6 +127,10 @@ public class Annonce {
             Categorie cat = new Categorie();
             cat.setId(categorie);
             this.cat = (Categorie) req.select(con, cat).get(0);
+        } else {
+            Categorie m=new Categorie();
+            m.setNom("_");
+            this.cat=m;
         }
     }
 
@@ -131,6 +143,8 @@ public class Annonce {
     public void setAnnee(String annee) throws Exception{
         if (annee!=null&&!annee.equals("")) {
             this.annee = Integer.parseInt(annee);
+        } else {
+            throw new Exception("Prix requis!");
         }
        
     }
@@ -140,12 +154,18 @@ public class Annonce {
             Type type = new Type();
             type.setId(typeId);
             this.type = (Type) req.select(con, type).get(0);
+        } else {
+            Type m=new Type();
+            m.setNom("_");
+            this.type=m;
         }
     }
 
     public void setPlace(String place) throws Exception{
         if (place!=null&&!place.equals("")) {
             this.place = Integer.parseInt(place);
+        } else {
+            this.place=0;
         }
     }
 
@@ -160,6 +180,10 @@ public class Annonce {
             Etat etat = new Etat();
             etat.setId(etatId);
             this.etatVehicule = (Etat) req.select(con, etat).get(0);
+        } else {
+            Etat m=new Etat();
+            m.setNom("_");
+            this.etatVehicule=m;
         }
     }
 
@@ -168,6 +192,10 @@ public class Annonce {
             Transmission transmission = new Transmission();
             transmission.setId(transmissionId);
             this.transmission = (Transmission) req.select(con, transmission).get(0);
+        } else {
+            Transmission m=new Transmission();
+            m.setNom("_");
+            this.transmission=m;
         }
     }
     
@@ -176,6 +204,10 @@ public class Annonce {
             Energie energie = new Energie();
             energie.setId(energieId);
             this.energie = (Energie) req.select(con, energie).get(0);
+        } else {
+            Energie m=new Energie();
+            m.setNom("_");
+            this.energie=m;
         }
     }
 

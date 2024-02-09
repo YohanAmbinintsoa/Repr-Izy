@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -92,10 +93,28 @@ public class ConversationController extends BaseController{
         return data;
     }
 
-    // @GetMapping("conversation/{iduser}")
-    // public String getMethodName(@RequestParam String param) {
-    //     return new String();
-    // }
-    
+    @GetMapping("conversation/{iduser}")
+    @Authority(role = Role.USER)
+    public ResponseData getMethodName(@PathVariable("iduser") String id) {
+        ResponseData data=new ResponseData();
+        try {
+            User user2=new User();
+            user2.setId(id);
+            List<User> users=new ArrayList<>();
+            users.add(MyContext.getUser());
+            users.add((User)this.requester.select(null,user2).get(0));
+            Conversation conv=chatService.getConversationOf(users);
+            if (conv==null) {
+                conv=new Conversation();
+                conv.setUtilisateurs(users);
+            }
+            Conversation convUser=conv;
+            data.addData(convUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            data.setError(e.getMessage());
+        }
+        return data;
+    }
     
 }
