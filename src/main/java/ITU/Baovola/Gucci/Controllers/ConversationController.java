@@ -93,7 +93,7 @@ public class ConversationController extends BaseController{
         return data;
     }
 
-    @GetMapping("conversation/{iduser}")
+    @GetMapping("/conversation/{iduser}")
     @Authority(role = Role.USER)
     public ResponseData getMethodName(@PathVariable("iduser") String id) {
         ResponseData data=new ResponseData();

@@ -69,7 +69,8 @@ public class DocumentService {
     }
 
     public List<Annonce> getAnnoncesUser(String userid){
-        Criteria  criteria=Criteria.where("user._id").is(userid);
+        System.out.println("USERID="+userid);
+        Criteria criteria=Criteria.where("user._id").is(userid);
         Query query=new Query(criteria);
         return mongoTemplate.find(query, Annonce.class);
     }
