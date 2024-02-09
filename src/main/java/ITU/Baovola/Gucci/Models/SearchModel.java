@@ -37,6 +37,7 @@ public class SearchModel {
             String value=req.getParameter(fields[i].getName());
             if (value!=null&&!value.equals("")) {
                 Method setter= this.getClass().getMethod("set"+SearchModel.capitalizeFirstLetter(fields[i].getName()), fields[i].getType());
+                System.out.println(fields[i].getType());
                 if (fields[i].getType().equals(Float.class)) {
                     setter.invoke(this, Float.parseFloat(value));
                 } else {
@@ -114,7 +115,7 @@ public class SearchModel {
     }
     public Criteria getKilometrique() {
         return Criteria.where("kilometrique").is(this.kilometrique);
-    }
+    } 
     public void setKilometrique(float kilometrique) {
         this.kilometrique = kilometrique;
     }
