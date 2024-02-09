@@ -110,6 +110,7 @@ public class ConversationController extends BaseController{
                 conv.setUtilisateurs(users);
             }
             Conversation convUser=conv;
+            convUser.setMessages(messageRepository.findByIdConversation(convUser.getId())); 
             data.addData(convUser);
         } catch (Exception e) {
             e.printStackTrace();
