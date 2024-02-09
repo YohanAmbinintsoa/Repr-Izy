@@ -13,12 +13,12 @@ public class SearchModel {
     String idmarque;
     float prixMin;
     float prixMax;
-    int annee;
+    float annee;
     String libelle;
     String description;
     String idtype;
-    int place;
-    int kilometrique;
+    float place;
+    float kilometrique;
     String idetat;
     String idtransmission;
     String idenergie;
@@ -85,7 +85,7 @@ public class SearchModel {
 
         return Criteria.where("annee").is(this.annee);
     }
-    public void setAnnee(int annee) {
+    public void setAnnee(float annee) {
         this.annee = annee;
     }
     public Criteria getLibelle() {
@@ -109,13 +109,13 @@ public class SearchModel {
     public Criteria getPlace() {
         return Criteria.where("place").is(this.place);
     }
-    public void setPlace(int place) {
+    public void setPlace(float place) {
         this.place = place;
     }
     public Criteria getKilometrique() {
         return Criteria.where("kilometrique").is(this.kilometrique);
     }
-    public void setKilometrique(int kilometrique) {
+    public void setKilometrique(float kilometrique) {
         this.kilometrique = kilometrique;
     }
     public Criteria getIdetat() {
