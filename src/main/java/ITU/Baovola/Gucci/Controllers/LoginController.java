@@ -7,9 +7,12 @@ import ITU.Baovola.Gucci.DTO.JwtResponse;
 import ITU.Baovola.Gucci.DTO.ResponseData;
 import ITU.Baovola.Gucci.Models.User;
 import ITU.Baovola.Gucci.Security.JwtUtils;
+import ITU.Baovola.Gucci.Security.MyContext;
+import ITU.Baovola.Gucci.Services.DocumentService;
 import ITU.Baovola.Gucci.Services.Photo;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.sql.Connection;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController extends BaseController{
     @Autowired
     JwtUtils utils;
+    @Autowired
+    private DocumentService service;
     
     @PostMapping("/login")
     public ResponseData loginUser(HttpServletRequest req) {
         ResponseData data=new ResponseData();
+        Connection con=null;
         try {
+            con=MyContext.getRequester().connect();
             User user=User.login(req.getParameter("username"), req.getParameter("mdp"), this.requester);
             if (user==null) {
                 data.setError("Verifier vos identifiants!");
@@ -32,11 +39,19 @@ public class LoginController extends BaseController{
             }
             String token=utils.generateJwtToken(user);
             user.setMdp(null);
+            user.countVente(con);
+            user.setAnnonce(service.countUserAnnonce(user.getId()));
             data.addData(user);
             data.addData(new JwtResponse(token));
         } catch (Exception e) {
             e.printStackTrace();
             data.setError(e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         }
         return data;
     }
@@ -44,7 +59,9 @@ public class LoginController extends BaseController{
     @PostMapping("/register")
     public ResponseData register(HttpServletRequest req) {
         ResponseData data=new ResponseData();
+        Connection con=null;
         try {
+            con=MyContext.getRequester().connect();
             User user=new User();
             user.setNom(req.getParameter("nom"));
             user.setPrenom(req.getParameter("prenom"));
@@ -62,11 +79,19 @@ public class LoginController extends BaseController{
             user=this.requester.insert(null, user);
             String token=utils.generateJwtToken(user);
             user.setMdp(null);
+            user.countVente(con);
+            user.setAnnonce(service.countUserAnnonce(user.getId()));
             data.addData(user);
             data.addData(new JwtResponse(token));
         } catch (Exception e) {
             e.printStackTrace();
             data.setError(e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         }
         return data;
     }

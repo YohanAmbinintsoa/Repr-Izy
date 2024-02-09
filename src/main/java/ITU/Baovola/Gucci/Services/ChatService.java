@@ -38,7 +38,7 @@ public class ChatService {
 
     public Conversation getConversationOf(List<User> users){
         Query query=new Query();
-        query.addCriteria(Criteria.where("utilisateurs").in(users));
+        query.addCriteria(Criteria.where("utilisateurs").all(users));
         return mongo.findOne(query, Conversation.class);
     }
 }
