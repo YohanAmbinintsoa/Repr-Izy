@@ -185,7 +185,8 @@ public class AnnonceController extends BaseController{
     public ResponseData getMyAnnonces(){
         ResponseData data=new ResponseData();
         try {
-           service.getAnnoncesUser(MyContext.getUser().getId());
+            data.addData(service.getAnnoncesUser(MyContext.getUser().getId()));
+           
         } catch (Exception e) {
            e.printStackTrace();
         }
