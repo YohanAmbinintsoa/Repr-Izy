@@ -29,7 +29,6 @@ public class ImageService {
       Credentials credentials = GoogleCredentials.fromStream(inputStream);
       Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
       storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-
       String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/image-server-ef5eb.appspot.com/o/%s?alt=media";
       return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
   }
@@ -51,7 +50,6 @@ public class ImageService {
         List<String> images=new ArrayList<>();
         for (int i = 0; i < photos.length; i++) {
             Photo photo = new Photo(photos[i],"image"+i+".jpg");
-            // photo.convertToFile();
             images.add(this.upload(photo));
         }
         return images;
