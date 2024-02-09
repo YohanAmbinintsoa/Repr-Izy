@@ -11,20 +11,20 @@ import jakarta.servlet.http.HttpServletRequest;
 public class SearchModel {
     String idcategorie;
     String idmarque;
-    float prixMin;
-    float prixMax;
-    float annee;
+    Float prixMin;
+    Float prixMax;
+    Float annee;
     String libelle;
     String description;
     String idtype;
-    float place;
-    float kilometrique;
+    Float place;
+    Float kilometrique;
     String idetat;
     String idtransmission;
     String idenergie;
-    float cylindre;
-    float puissance;
-    float nbrCylindre;
+    Float cylindre;
+    Float puissance;
+    Float nbrCylindre;
 
     public SearchModel() {
 
@@ -37,7 +37,7 @@ public class SearchModel {
             String value=req.getParameter(fields[i].getName());
             if (value!=null&&!value.equals("")) {
                 Method setter= this.getClass().getMethod("set"+SearchModel.capitalizeFirstLetter(fields[i].getName()), fields[i].getType());
-                System.out.println(fields[i].getType());
+                System.out.println("CLASSE="+fields[i].getType());
                 if (fields[i].getType().equals(Float.class)) {
                     setter.invoke(this, Float.parseFloat(value));
                 } else {
@@ -73,20 +73,20 @@ public class SearchModel {
     public Criteria getPrixMin() {
         return Criteria.where("prix").gt(this.prixMin);
     }
-    public void setPrixMin(float prixMin) {
+    public void setPrixMin(Float prixMin) {
         this.prixMin = prixMin;
     }
     public Criteria getPrixMax() {
         return Criteria.where("prix").lt(this.prixMax);
     }
-    public void setPrixMax(float prixMax) {
+    public void setPrixMax(Float prixMax) {
         this.prixMax = prixMax;
     }
     public Criteria getAnnee() {
 
         return Criteria.where("annee").is(this.annee);
     }
-    public void setAnnee(float annee) {
+    public void setAnnee(Float annee) {
         this.annee = annee;
     }
     public Criteria getLibelle() {
@@ -110,13 +110,13 @@ public class SearchModel {
     public Criteria getPlace() {
         return Criteria.where("place").is(this.place);
     }
-    public void setPlace(float place) {
+    public void setPlace(Float place) {
         this.place = place;
     }
     public Criteria getKilometrique() {
         return Criteria.where("kilometrique").is(this.kilometrique);
     } 
-    public void setKilometrique(float kilometrique) {
+    public void setKilometrique(Float kilometrique) {
         this.kilometrique = kilometrique;
     }
     public Criteria getIdetat() {
@@ -140,20 +140,19 @@ public class SearchModel {
     public Criteria getCylindre() {
         return Criteria.where("cylindre").is(this.cylindre);
     }
-    public void setCylindre(float cylindre) {
+    public void setCylindre(Float cylindre) {
         this.cylindre = cylindre;
     }
     public Criteria getPuissance() {
         return Criteria.where("puissance._id").is(this.puissance);
     }
-    public void setPuissance(float puissance) {
+    public void setPuissance(Float puissance) {
         this.puissance = puissance;
     }
     public Criteria getNbrCylindre() {
         return Criteria.where("nbrCylindre").is(this.nbrCylindre);
     }
-    public void setNbrCylindre(float nbrCylindre) {
+    public void setNbrCylindre(Float nbrCylindre) {
         this.nbrCylindre = nbrCylindre;
     }
-    
 }
