@@ -42,6 +42,7 @@ public class DocumentService {
                     Criteria.where(element).is(value),
                     Criteria.where(element + "._id").is(value)
                 );
+                query.addCriteria(criteria);
             }
         }
         return mongoTemplate.find(query, Annonce.class);
