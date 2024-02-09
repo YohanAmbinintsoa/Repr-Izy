@@ -44,7 +44,7 @@ public class VenteController extends BaseController{
             Annonce annonce=repo.findById(req.getParameter("idannonce")).get();
             User acheteur=new User();
             acheteur.setCIN(req.getParameter("cin"));
-            acheteur=(User)MyContext.getRequester().select(null, acheteur).get(0);
+            acheteur=(User)MyContext.getRequester().select(con, acheteur).get(0);
             User vendeur=(User) MyContext.getUser();
             float prix=Float.parseFloat(req.getParameter("prix"));
             Parametrages params=Parametrages.getParametrages(annonce.getPrix(),prix);
