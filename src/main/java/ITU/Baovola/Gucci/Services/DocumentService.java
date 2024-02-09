@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import ITU.Baovola.Gucci.Models.Annonce;
 import ITU.Baovola.Gucci.Models.FavoriteAnnonce;
+import ITU.Baovola.Gucci.Models.SearchModel;
 import ITU.Baovola.Gucci.Models.User;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -32,20 +33,7 @@ public class DocumentService {
         mongoTemplate.updateFirst(query, update, Annonce.class);
     }
 
-    public List<Annonce> search(HttpServletRequest req) {
-        Query query = new Query();
-        Enumeration<String> names = req.getParameterNames();
-        while (names.hasMoreElements()) {
-            String element = names.nextElement();
-            String value = req.getParameter(element);
-            if (element != null && !element.equals("")) {
-                Criteria criteria = new Criteria().orOperator(
-                    Criteria.where(element).is(value),
-                    Criteria.where(element + "._id").is(value)
-                );
-                query.addCriteria(criteria);
-            }
-        }
+    public List<Annonce> search(Query query) {
         return mongoTemplate.find(query, Annonce.class);
     }
 

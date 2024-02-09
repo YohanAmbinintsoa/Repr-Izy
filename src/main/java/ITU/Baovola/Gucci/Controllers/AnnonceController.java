@@ -19,6 +19,7 @@ import ITU.Baovola.Gucci.Models.Etat;
 import ITU.Baovola.Gucci.Models.FavoriteAnnonce;
 import ITU.Baovola.Gucci.Models.Marque;
 import ITU.Baovola.Gucci.Models.Modele;
+import ITU.Baovola.Gucci.Models.SearchModel;
 import ITU.Baovola.Gucci.Models.Transmission;
 import ITU.Baovola.Gucci.Models.Type;
 import ITU.Baovola.Gucci.Models.User;
@@ -251,7 +252,8 @@ public class AnnonceController extends BaseController{
     public ResponseData search(HttpServletRequest req) {
         ResponseData data=new ResponseData();
         try {
-           data.addData(this.service.search(req));
+           SearchModel searchModel=new SearchModel();
+           data.addData(this.service.search(searchModel.setThemAll(req)));
         } catch (Exception e) { 
             e.printStackTrace();
             data.setError(e.getMessage());
