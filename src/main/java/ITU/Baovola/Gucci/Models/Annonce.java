@@ -137,15 +137,15 @@ public class Annonce {
     public void setPrix(String prix) throws Exception{
         if (prix!=null&&!prix.equals("")) {
             this.prix = Float.parseFloat(prix);
+        } else{
+            throw new Exception("Prix requis!");
         }
     }
 
     public void setAnnee(String annee) throws Exception{
         if (annee!=null&&!annee.equals("")) {
             this.annee = Integer.parseInt(annee);
-        } else {
-            throw new Exception("Prix requis!");
-        }
+        } 
        
     }
 
