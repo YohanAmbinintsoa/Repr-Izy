@@ -79,7 +79,7 @@ public class LoginController extends BaseController{
             user=this.requester.insert(null, user);
             String token=utils.generateJwtToken(user);
             user.setMdp(null);
-            user.countVente(con);
+            user.setVente(user.countVente(con));
             user.setAnnonce(service.countUserAnnonce(user.getId()));
             data.addData(user);
             data.addData(new JwtResponse(token));
