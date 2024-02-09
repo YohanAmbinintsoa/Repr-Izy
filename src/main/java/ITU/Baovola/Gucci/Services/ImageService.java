@@ -39,8 +39,8 @@ public class ImageService {
   }
 
   public String upload(Photo photo) throws Exception{            
-        String filename = UUID.randomUUID().toString().concat(this.getExtension(photo.getFilename()));
         File file= photo.convertToFile();                  
+        String filename = UUID.randomUUID().toString().concat(this.getExtension(photo.getFilename()));
         String URL = this.uploadFile(file, filename);                                   
         file.delete();
         return URL;

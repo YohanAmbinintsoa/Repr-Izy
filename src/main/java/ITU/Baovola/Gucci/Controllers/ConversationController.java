@@ -22,6 +22,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("api/v1/Conversations")
@@ -89,5 +91,11 @@ public class ConversationController extends BaseController{
         }
         return data;
     }
+
+    // @GetMapping("conversation/{iduser}")
+    // public String getMethodName(@RequestParam String param) {
+    //     return new String();
+    // }
+    
     
 }
