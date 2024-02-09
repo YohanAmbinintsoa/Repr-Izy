@@ -19,6 +19,9 @@ public class Vente {
     String vendeur;
     @Column(name = "acheteur")
     String acheteur;
+    User vendeurUser;
+    User acheteurUser;
+    
 
     public Vente(String idannonce, String vendeur, String acheteur) {
         this.idannonce = idannonce;
@@ -59,6 +62,18 @@ public class Vente {
     }
     public void setAcheteur(String acheteur) {
         this.acheteur = acheteur;
+    }
+    public User getVendeurUser() {
+        return vendeurUser;
+    }
+    public void setVendeurUser(User vendeurUser) {
+        this.vendeurUser = vendeurUser;
+    }
+    public User getAcheteurUser() {
+        return acheteurUser;
+    }
+    public void setAcheteurUser(User acheteurUser) {
+        this.acheteurUser = acheteurUser;
     }
     
 }

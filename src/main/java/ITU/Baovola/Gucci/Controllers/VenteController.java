@@ -18,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,11 +73,28 @@ public class VenteController extends BaseController{
     @Authority(role = Role.ADMIN)
     public ResponseData geVente() {
         ResponseData data=new ResponseData();
+        Connection con=null;
         try {
-            data.addData(this.requester.select(null,new Vente()));
+            con=MyContext.getRequester().connect();
+            List<Vente> ventes=this.requester.select(null,new Vente());
+            for (Vente vente : ventes) {
+                User vendeur=new User();
+                vendeur.setId(vente.getVendeur());
+                User acheteur=new User();
+                acheteur.setId(vente.getAcheteur());
+                vente.setVendeurUser((User)this.requester.select(null, vendeur).get(0));
+                vente.setAcheteurUser((User)this.requester.select(null, acheteur).get(0));
+            }
+            data.addData(ventes);
         } catch (Exception e) {
            e.printStackTrace();
            data.setError(e.getMessage());
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
         }
         return data;
     }
