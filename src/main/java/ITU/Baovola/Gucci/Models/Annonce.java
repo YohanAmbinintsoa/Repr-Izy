@@ -8,8 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.NonNull;
-import com.mongodb.lang.Nullable;
-
 import ITU.Baovola.Gucci.DAO.DAO;
 
 @Document(collection = "Annonce")

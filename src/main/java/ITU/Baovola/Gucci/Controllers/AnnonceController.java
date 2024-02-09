@@ -109,7 +109,6 @@ public class AnnonceController extends BaseController{
     }
 
     @GetMapping("/{id}")
-    @Authority(role = {Role.ADMIN,Role.USER})
     public ResponseData findId(@PathVariable("id") String id) {
         ResponseData data=new ResponseData();
         try {
